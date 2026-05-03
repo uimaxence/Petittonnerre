@@ -1,8 +1,0 @@
-# Protection par mot de passe du site dev (staging)
-# À placer dans le dossier dev/ sur le serveur (à côté de index.html, css/, js/, assets/)
-# En cas d'erreur 500 : remplace /chemin/vers/dev ci-dessous par le chemin ABSOLU du dossier dev (voir README)
-
-AuthType Basic
-AuthName "Accès staging - Petit Tonnerre"
-AuthUserFile /home/www/public/dev/.htpasswd
-Require valid-user
