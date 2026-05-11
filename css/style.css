@@ -475,14 +475,7 @@ h2 {
     font-weight: bold;
 }
 
-/* Forme "papier déchiré" partagée — même clip-path que .btn.hero-button */
-.pt-tag,
-.pt-title-word {
-    -webkit-clip-path: polygon(49% 5%, 95% 13%, 94% 48%, 97% 88%, 75% 96%, 37% 87%, 0 92%, 3% 36%, 0 15%);
-    clip-path: polygon(49% 5%, 95% 13%, 94% 48%, 97% 88%, 75% 96%, 37% 87%, 0 92%, 3% 36%, 0 15%);
-}
-
-/* Titre PREMIER / TONNERRE — PREMIER passe au-dessus de TONNERRE */
+/* Titre PREMIER / TONNERRE — clip-path banner simplifié (différent du bouton) */
 .pt-title {
     display: flex;
     flex-direction: column;
@@ -500,8 +493,11 @@ h2 {
     letter-spacing: 1px;
     line-height: 1;
     display: inline-block;
-    /* Effet verre : highlight blanc en haut */
+    /* Effet verre */
     box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.35);
+    /* Clip-path banner simple : edges symétriques avec coins entaillés, pas les bumps du bouton */
+    -webkit-clip-path: polygon(0% 14%, 7% 0%, 93% 4%, 100% 16%, 100% 84%, 93% 100%, 7% 96%, 0% 86%);
+    clip-path: polygon(0% 14%, 7% 0%, 93% 4%, 100% 16%, 100% 84%, 93% 100%, 7% 96%, 0% 86%);
 }
 
 .pt-word-premier {
@@ -533,24 +529,14 @@ h2 {
             drop-shadow(0 4px 0 var(--color-blue));
 }
 
-/* Bandeau date : un seul torn-paper bicolore (rose | cyan) avec diamant central */
-.pt-date-banner {
-    position: relative;
-    display: inline-flex;
-    align-items: stretch;
-    line-height: 1;
-    /* gradient hard-stop pour split 50/50 rose | cyan */
-    background:
-        linear-gradient(
-            to right,
-            var(--color-rose) 0%,
-            var(--color-rose) 50%,
-            var(--color-blue) 50%,
-            var(--color-blue) 100%
-        );
-    -webkit-clip-path: polygon(49% 5%, 95% 13%, 94% 48%, 97% 88%, 75% 96%, 37% 87%, 0 92%, 3% 36%, 0 15%);
-    clip-path: polygon(49% 5%, 95% 13%, 94% 48%, 97% 88%, 75% 96%, 37% 87%, 0 92%, 3% 36%, 0 15%);
-    box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.35);
+/* Bandeau date : conteneur clip-path avec contour rose + gradient bleu intérieur */
+.pt-date-frame {
+    display: inline-block;
+    background-color: var(--color-rose);
+    padding: 4px;
+    line-height: 0;
+    -webkit-clip-path: polygon(0% 12%, 5% 0%, 95% 5%, 100% 15%, 100% 85%, 95% 100%, 5% 95%, 0% 88%);
+    clip-path: polygon(0% 12%, 5% 0%, 95% 5%, 100% 15%, 100% 85%, 95% 100%, 5% 95%, 0% 88%);
     -webkit-filter: drop-shadow(0 1px 0 var(--color-dark-blue))
             drop-shadow(0 2px 0 var(--color-dark-blue))
             drop-shadow(0 3px 0 var(--color-dark-blue));
@@ -559,42 +545,68 @@ h2 {
             drop-shadow(0 3px 0 var(--color-dark-blue));
 }
 
-.pt-date-half {
-    font-family: 'TBJ Fluke', sans-serif;
-    font-weight: bold;
-    font-size: 32px;
-    letter-spacing: 2px;
-    color: var(--color-dark-blue);
-    padding: 14px 36px;
+.pt-date-banner {
     display: inline-flex;
     align-items: center;
-    justify-content: center;
+    gap: 18px;
+    padding: 14px 32px;
+    line-height: 1;
+    background: linear-gradient(135deg, #170B40 0%, #2B187B 50%, #1A0E5F 100%);
+    box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.18);
+    -webkit-clip-path: polygon(0% 12%, 5% 0%, 95% 5%, 100% 15%, 100% 85%, 95% 100%, 5% 95%, 0% 88%);
+    clip-path: polygon(0% 12%, 5% 0%, 95% 5%, 100% 15%, 100% 85%, 95% 100%, 5% 95%, 0% 88%);
 }
 
-.pt-date-half-rose {
-    padding-right: 44px;
+.pt-date-jeudi {
+    font-family: 'TBJ Fluke', sans-serif;
+    font-weight: bold;
+    font-size: 30px;
+    letter-spacing: 2px;
+    color: white;
+    text-shadow: 0 0 8px rgba(255, 255, 255, 0.25);
 }
 
-.pt-date-half-blue {
-    padding-left: 44px;
+.pt-date-star {
+    width: 22px;
+    height: 22px;
+    object-fit: contain;
+    filter: drop-shadow(0 0 4px rgba(1, 255, 255, 0.8))
+            drop-shadow(0 0 10px rgba(1, 255, 255, 0.5));
+    animation: ptStarPulse 2s ease-in-out infinite;
 }
 
-/* Diamant central au centre de la banner */
-.pt-date-diamond {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 14px;
-    height: 14px;
-    background-color: white;
-    transform: translate(-50%, -50%) rotate(45deg);
-    box-shadow:
-        0 0 6px rgba(255, 255, 255, 0.9),
-        0 0 12px rgba(1, 255, 255, 0.5);
-    z-index: 3;
+@keyframes ptStarPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 4px rgba(1,255,255,0.8)) drop-shadow(0 0 10px rgba(1,255,255,0.5)); }
+    50%      { transform: scale(1.15); filter: drop-shadow(0 0 6px rgba(1,255,255,1)) drop-shadow(0 0 14px rgba(1,255,255,0.7)); }
 }
 
-/* Venue : ANGERS torn-paper + L'ARCHE stack même couleur */
+.pt-date-num {
+    font-family: 'TBJ Fluke', sans-serif;
+    font-weight: bold;
+    font-size: 36px;
+    letter-spacing: 1.5px;
+    display: inline-flex;
+    align-items: baseline;
+    line-height: 1;
+}
+
+.pt-date-day {
+    color: var(--color-rose);
+    text-shadow:
+        0 0 6px rgba(253, 126, 219, 0.9),
+        0 0 14px rgba(253, 126, 219, 0.6),
+        0 0 24px rgba(253, 126, 219, 0.35);
+}
+
+.pt-date-month {
+    color: var(--color-blue);
+    text-shadow:
+        0 0 6px rgba(1, 255, 255, 0.9),
+        0 0 14px rgba(1, 255, 255, 0.6),
+        0 0 24px rgba(1, 255, 255, 0.35);
+}
+
+/* Venue : ANGERS label simple + L'ARCHE stack même couleur */
 .pt-venue {
     display: inline-flex;
     align-items: center;
@@ -612,11 +624,12 @@ h2 {
     font-weight: bold;
     font-size: 24px;
     letter-spacing: 2px;
-    padding: 14px 30px;
+    padding: 14px 32px;
     line-height: 1;
-    box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.5);
-    -webkit-clip-path: polygon(49% 5%, 95% 13%, 94% 48%, 97% 88%, 75% 96%, 37% 87%, 0 92%, 3% 36%, 0 15%);
-    clip-path: polygon(49% 5%, 95% 13%, 94% 48%, 97% 88%, 75% 96%, 37% 87%, 0 92%, 3% 36%, 0 15%);
+    box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.55);
+    /* Label hexagonal simple — pas torn-paper, ne ressemble pas au bouton */
+    -webkit-clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
+    clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
     -webkit-filter: drop-shadow(0 1px 0 var(--color-dark-blue))
             drop-shadow(0 2px 0 var(--color-dark-blue))
             drop-shadow(0 3px 0 var(--color-dark-blue));
@@ -670,15 +683,19 @@ h2 {
     .pt-word-tonnerre {
         margin-top: -18px;
     }
-    .pt-date-half {
-        font-size: 22px;
-        padding: 11px 26px;
+    .pt-date-banner {
+        gap: 12px;
+        padding: 11px 22px;
     }
-    .pt-date-half-rose { padding-right: 32px; }
-    .pt-date-half-blue { padding-left: 32px; }
-    .pt-date-diamond {
-        width: 10px;
-        height: 10px;
+    .pt-date-jeudi {
+        font-size: 22px;
+    }
+    .pt-date-num {
+        font-size: 26px;
+    }
+    .pt-date-star {
+        width: 18px;
+        height: 18px;
     }
     .pt-venue {
         gap: 14px;
