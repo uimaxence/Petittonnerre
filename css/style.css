@@ -351,12 +351,101 @@ h2 {
 
 /* Section Premier Tonnerre (event 28 mai) — layout inspiré de l'affiche */
 #projet.premier-tonnerre {
-    margin: 0 30px 140px 30px;
+    position: relative;
+    margin: 0 0 140px 0;
+    padding: 80px 30px 90px 30px;
     display: flex;
     justify-content: center;
+    background-color: #1B1245;
+    overflow: hidden;
+    /* edges torn-paper subtils (haut + bas) */
+    -webkit-clip-path: polygon(
+        0% 2%, 8% 0%, 18% 3%, 32% 1%, 48% 2%, 62% 0%, 76% 2%, 88% 1%, 100% 3%,
+        100% 98%, 88% 100%, 76% 98%, 62% 100%, 48% 99%, 32% 100%, 18% 98%, 8% 100%, 0% 98%
+    );
+    clip-path: polygon(
+        0% 2%, 8% 0%, 18% 3%, 32% 1%, 48% 2%, 62% 0%, 76% 2%, 88% 1%, 100% 3%,
+        100% 98%, 88% 100%, 76% 98%, 62% 100%, 48% 99%, 32% 100%, 18% 98%, 8% 100%, 0% 98%
+    );
 }
 
+/* Décor de fond */
+.pt-bg {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    z-index: 0;
+    overflow: hidden;
+}
+
+/* Grille rose subtile */
+.pt-grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+        linear-gradient(rgba(253, 126, 219, 0.07) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(253, 126, 219, 0.07) 1px, transparent 1px);
+    background-size: 48px 48px;
+    background-position: center center;
+    mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
+    -webkit-mask-image: radial-gradient(ellipse at center, black 40%, transparent 90%);
+}
+
+/* Assets décoratifs dispatchés */
+.pt-deco {
+    position: absolute;
+    opacity: 0.22;
+    width: 60px;
+    height: auto;
+    filter: drop-shadow(0 0 8px rgba(1, 255, 255, 0.3));
+    animation: ptFloat 8s ease-in-out infinite;
+}
+
+.pt-deco-1 { top: 6%; left: 8%; width: 70px; animation-delay: 0s; }
+.pt-deco-2 { top: 14%; right: 9%; width: 55px; animation-delay: 1.2s; }
+.pt-deco-3 { top: 48%; left: 3%; width: 50px; animation-delay: 2.4s; }
+.pt-deco-4 { bottom: 16%; right: 14%; width: 45px; animation-delay: 3.6s; }
+.pt-deco-5 { bottom: 8%; left: 18%; width: 38px; animation-delay: 4.8s; }
+.pt-deco-6 { top: 38%; right: 5%; width: 60px; animation-delay: 6s; }
+
+@keyframes ptFloat {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-8px) rotate(2deg); }
+}
+
+/* Étoiles scintillantes */
+.pt-star {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    border-radius: 50%;
+    background-color: white;
+    box-shadow:
+        0 0 4px rgba(255, 255, 255, 0.9),
+        0 0 10px rgba(1, 255, 255, 0.5),
+        0 0 16px rgba(1, 255, 255, 0.25);
+    animation: ptTwinkle 3s ease-in-out infinite;
+}
+
+.pt-star-1 { top: 10%; left: 22%; animation-delay: 0s; }
+.pt-star-2 { top: 18%; right: 28%; animation-delay: 0.4s; width: 3px; height: 3px; }
+.pt-star-3 { top: 32%; left: 14%; animation-delay: 0.9s; }
+.pt-star-4 { top: 50%; right: 18%; animation-delay: 1.5s; width: 5px; height: 5px; }
+.pt-star-5 { top: 64%; left: 28%; animation-delay: 2.1s; width: 3px; height: 3px; }
+.pt-star-6 { top: 78%; right: 30%; animation-delay: 2.6s; }
+.pt-star-7 { top: 28%; left: 70%; animation-delay: 0.7s; width: 3px; height: 3px; }
+.pt-star-8 { bottom: 22%; left: 50%; animation-delay: 1.8s; }
+.pt-star-9 { top: 60%; left: 8%; animation-delay: 2.3s; width: 3px; height: 3px; }
+
+@keyframes ptTwinkle {
+    0%, 100% { opacity: 0.25; transform: scale(0.7); }
+    50% { opacity: 1; transform: scale(1.2); }
+}
+
+/* Contenu principal */
 .pt-content {
+    position: relative;
+    z-index: 2;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -370,9 +459,15 @@ h2 {
     font-family: 'TBJ Fluke', sans-serif;
     font-weight: lighter;
     font-size: 14px;
-    color: var(--color-blue);
-    letter-spacing: 3px;
+    color: white;
+    letter-spacing: 4px;
     text-transform: uppercase;
+}
+
+.pt-eyebrow-sep {
+    color: var(--color-blue);
+    margin: 0 8px;
+    font-weight: bold;
 }
 
 /* Forme "papier déchiré" partagée — même clip-path que .btn.hero-button */
@@ -382,60 +477,11 @@ h2 {
     clip-path: polygon(49% 5%, 95% 13%, 94% 48%, 97% 88%, 75% 96%, 37% 87%, 0 92%, 3% 36%, 0 15%);
 }
 
-/* Bandeau date : JEUDI · 28 MAI */
-.pt-date-banner {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    flex-wrap: nowrap;
-    justify-content: center;
-}
-
-.pt-tag {
-    display: inline-block;
-    font-family: 'TBJ Fluke', sans-serif;
-    font-weight: bold;
-    font-size: 22px;
-    letter-spacing: 1.5px;
-    color: var(--color-dark-blue);
-    padding: 10px 22px;
-    line-height: 1;
-}
-
-.pt-tag-rose {
-    background-color: var(--color-rose);
-    -webkit-filter: drop-shadow(0 1px 0 var(--color-blue))
-            drop-shadow(0 2px 0 var(--color-blue))
-            drop-shadow(0 3px 0 var(--color-blue));
-    filter: drop-shadow(0 1px 0 var(--color-blue))
-            drop-shadow(0 2px 0 var(--color-blue))
-            drop-shadow(0 3px 0 var(--color-blue));
-}
-
-.pt-tag-blue {
-    background-color: var(--color-blue);
-    -webkit-filter: drop-shadow(0 1px 0 var(--color-rose))
-            drop-shadow(0 2px 0 var(--color-rose))
-            drop-shadow(0 3px 0 var(--color-rose));
-    filter: drop-shadow(0 1px 0 var(--color-rose))
-            drop-shadow(0 2px 0 var(--color-rose))
-            drop-shadow(0 3px 0 var(--color-rose));
-}
-
-.pt-tag-sep {
-    font-family: 'TBJ Fluke', sans-serif;
-    font-weight: bold;
-    font-size: 28px;
-    color: var(--color-rose);
-    line-height: 1;
-}
-
-/* Titre PREMIER / TONNERRE */
+/* Titre PREMIER / TONNERRE — PREMIER passe au-dessus de TONNERRE */
 .pt-title {
     display: flex;
     flex-direction: column;
     align-items: center;
-    gap: 18px;
     margin: 12px 0;
     text-transform: uppercase;
 }
@@ -449,10 +495,14 @@ h2 {
     letter-spacing: 1px;
     line-height: 1;
     display: inline-block;
+    /* Effet verre : highlight blanc en haut */
+    box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.35);
 }
 
 .pt-word-premier {
     background-color: var(--color-blue);
+    position: relative;
+    z-index: 2;
     -webkit-filter: drop-shadow(0 1px 0 var(--color-rose))
             drop-shadow(0 2px 0 var(--color-rose))
             drop-shadow(0 3px 0 var(--color-rose))
@@ -465,6 +515,9 @@ h2 {
 
 .pt-word-tonnerre {
     background-color: var(--color-rose);
+    position: relative;
+    z-index: 1;
+    margin-top: -28px;
     -webkit-filter: drop-shadow(0 1px 0 var(--color-blue))
             drop-shadow(0 2px 0 var(--color-blue))
             drop-shadow(0 3px 0 var(--color-blue))
@@ -475,11 +528,62 @@ h2 {
             drop-shadow(0 4px 0 var(--color-blue));
 }
 
-/* Venue : ANGERS pill + L'ARCHE */
+/* Bandeau date : JEUDI 28MAI (28 rose, MAI blanc) */
+.pt-date-banner {
+    display: inline-flex;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: nowrap;
+    justify-content: center;
+}
+
+.pt-tag {
+    display: inline-block;
+    font-family: 'TBJ Fluke', sans-serif;
+    font-weight: bold;
+    font-size: 26px;
+    letter-spacing: 1.5px;
+    color: var(--color-dark-blue);
+    padding: 12px 28px;
+    line-height: 1;
+    /* Effet verre */
+    box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.35);
+}
+
+.pt-tag-rose {
+    background-color: var(--color-rose);
+    -webkit-filter: drop-shadow(0 1px 0 var(--color-blue))
+            drop-shadow(0 2px 0 var(--color-blue))
+            drop-shadow(0 3px 0 var(--color-blue));
+    filter: drop-shadow(0 1px 0 var(--color-blue))
+            drop-shadow(0 2px 0 var(--color-blue))
+            drop-shadow(0 3px 0 var(--color-blue));
+}
+
+.pt-date-num {
+    font-family: 'TBJ Fluke', sans-serif;
+    font-weight: bold;
+    font-size: 42px;
+    line-height: 1;
+    letter-spacing: 1px;
+    display: inline-flex;
+    align-items: baseline;
+}
+
+.pt-date-day {
+    color: var(--color-rose);
+}
+
+.pt-date-month {
+    color: white;
+    margin-left: 4px;
+}
+
+/* Venue : ANGERS pill + L'ARCHE stack */
 .pt-venue {
     display: inline-flex;
     align-items: center;
-    gap: 14px;
+    gap: 16px;
     flex-wrap: nowrap;
     justify-content: center;
     margin-top: 4px;
@@ -491,61 +595,96 @@ h2 {
     color: var(--color-dark-blue);
     font-family: 'TBJ Fluke', sans-serif;
     font-weight: bold;
-    font-size: 20px;
+    font-size: 22px;
     letter-spacing: 2px;
-    padding: 9px 22px;
+    padding: 11px 22px;
     border-radius: 4px;
     line-height: 1;
+    box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.5);
 }
 
 .pt-venue-place {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     line-height: 1;
 }
 
 .pt-venue-name {
     font-family: 'TBJ Fluke', sans-serif;
     font-weight: bold;
-    font-size: 26px;
+    font-size: 28px;
     color: white;
     letter-spacing: 2px;
     line-height: 1;
+    text-align: left;
 }
 
 .pt-venue-sub {
     font-family: 'Poppins', sans-serif;
-    font-weight: 500;
-    font-size: 10px;
+    font-weight: 600;
+    font-size: 11px;
     color: var(--color-rose);
-    letter-spacing: 1.5px;
+    letter-spacing: 1.2px;
     text-transform: uppercase;
-    margin-top: 4px;
+    margin-top: 6px;
+    text-align: left;
+    /* étend la sous-ligne sur la largeur de L'ARCHE via flex */
+    align-self: stretch;
 }
 
 /* Responsive — Premier Tonnerre */
 @media (max-width: 600px) {
+    #projet.premier-tonnerre {
+        padding: 60px 20px 80px 20px;
+        margin-bottom: 100px;
+    }
     .pt-title-word {
         padding: 14px 40px;
-        font-size: clamp(40px, 12vw, 64px);
+        font-size: clamp(40px, 13vw, 64px);
+    }
+    .pt-word-tonnerre {
+        margin-top: -18px;
+    }
+    .pt-date-banner {
+        gap: 12px;
     }
     .pt-tag {
-        font-size: 16px;
-        padding: 8px 16px;
+        font-size: 18px;
+        padding: 10px 20px;
     }
-    .pt-tag-sep {
-        font-size: 22px;
+    .pt-date-num {
+        font-size: 32px;
+    }
+    .pt-venue {
+        gap: 12px;
     }
     .pt-venue-city {
         font-size: 16px;
-        padding: 7px 16px;
+        padding: 8px 16px;
     }
     .pt-venue-name {
-        font-size: 20px;
+        font-size: 22px;
     }
     .pt-venue-sub {
         font-size: 9px;
+    }
+    .pt-deco {
+        width: 40px !important;
+    }
+}
+
+@media (max-width: 420px) {
+    .pt-venue {
+        flex-direction: column;
+        gap: 10px;
+    }
+    .pt-venue-place {
+        align-items: center;
+    }
+    .pt-venue-name,
+    .pt-venue-sub {
+        text-align: center;
     }
 }
 

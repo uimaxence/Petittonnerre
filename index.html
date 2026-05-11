@@ -8,7 +8,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=4">
+    <link rel="stylesheet" href="css/style.css?v=5">
 </head>
 <body>
     <!-- Navigation -->
@@ -39,19 +39,40 @@
 
     <!-- Section Premier Tonnerre -->
     <section id="projet" class="premier-tonnerre">
-        <div class="pt-content">
-            <p class="pt-eyebrow">À partir de 19h&nbsp;·&nbsp;Ouvert à tous</p>
+        <!-- Décor de fond : grille + assets dispatchés + étoiles scintillantes -->
+        <div class="pt-bg" aria-hidden="true">
+            <div class="pt-grid"></div>
+            <img class="pt-deco pt-deco-1" src="assets/img/nuage.svg" alt="">
+            <img class="pt-deco pt-deco-2" src="assets/img/eclair.svg" alt="">
+            <img class="pt-deco pt-deco-3" src="assets/img/plume.svg" alt="">
+            <img class="pt-deco pt-deco-4" src="assets/img/eclair-ombre.svg" alt="">
+            <img class="pt-deco pt-deco-5" src="assets/img/plume-blanche.svg" alt="">
+            <img class="pt-deco pt-deco-6" src="assets/img/fer-a-cheval.svg" alt="">
+            <span class="pt-star pt-star-1"></span>
+            <span class="pt-star pt-star-2"></span>
+            <span class="pt-star pt-star-3"></span>
+            <span class="pt-star pt-star-4"></span>
+            <span class="pt-star pt-star-5"></span>
+            <span class="pt-star pt-star-6"></span>
+            <span class="pt-star pt-star-7"></span>
+            <span class="pt-star pt-star-8"></span>
+            <span class="pt-star pt-star-9"></span>
+        </div>
 
-            <div class="pt-date-banner">
-                <span class="pt-tag pt-tag-rose">JEUDI</span>
-                <span class="pt-tag-sep" aria-hidden="true">·</span>
-                <span class="pt-tag pt-tag-blue"><time datetime="2026-05-28">28&nbsp;MAI</time></span>
-            </div>
+        <div class="pt-content">
+            <p class="pt-eyebrow">À partir de 19h <span class="pt-eyebrow-sep">|</span> Ouvert à tous</p>
 
             <h2 class="pt-title">
                 <span class="pt-title-word pt-word-premier">Premier</span>
                 <span class="pt-title-word pt-word-tonnerre">Tonnerre</span>
             </h2>
+
+            <div class="pt-date-banner">
+                <span class="pt-tag pt-tag-rose">JEUDI</span>
+                <time class="pt-date-num" datetime="2026-05-28">
+                    <span class="pt-date-day">28</span><span class="pt-date-month">MAI</span>
+                </time>
+            </div>
 
             <div class="pt-venue">
                 <span class="pt-venue-city">ANGERS</span>
