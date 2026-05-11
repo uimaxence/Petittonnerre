@@ -191,15 +191,15 @@ document.addEventListener('DOMContentLoaded', function() {
                 return;
             }
             
-            // Envoi par mailto vers maxence.cailleau1@gmail.com
-            const subject = encodeURIComponent('Contact Petit Tonnerre Festival');
+            // Envoi par mailto vers petittonnerreproduction@gmail.com
+            const subject = encodeURIComponent('Contact Petit Tonnerre Production');
             const body = encodeURIComponent(
                 'Prénom : ' + data.prenom + '\n' +
                 'Nom : ' + data.nom + '\n' +
                 'Email : ' + data.email + '\n\n' +
                 'Message :\n' + data.message
             );
-            const mailtoLink = 'mailto:maxence.cailleau1@gmail.com?subject=' + subject + '&body=' + body;
+            const mailtoLink = 'mailto:petittonnerreproduction@gmail.com?subject=' + subject + '&body=' + body;
             window.location.href = mailtoLink;
             
             showMessage('Votre client mail va s\'ouvrir. Envoyez le message pour nous contacter.', 'success');

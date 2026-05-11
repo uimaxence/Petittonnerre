@@ -22,3 +22,6 @@ build/
 
 # Mot de passe dev (ne jamais commiter)
 .htpasswd
+
+# Assets sources DA (lourds, garder en local uniquement)
+assets/assets_V2/
