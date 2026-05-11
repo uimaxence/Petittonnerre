@@ -586,23 +586,23 @@ h2 {
     display: inline-block;
     /* Effet verre */
     box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.35);
-    /* Clip-path banner simple : edges symétriques avec coins entaillés, pas les bumps du bouton */
-    -webkit-clip-path: polygon(0% 14%, 7% 0%, 93% 4%, 100% 16%, 100% 84%, 93% 100%, 7% 96%, 0% 86%);
-    clip-path: polygon(0% 14%, 7% 0%, 93% 4%, 100% 16%, 100% 84%, 93% 100%, 7% 96%, 0% 86%);
 }
 
 .pt-word-premier {
     background-color: var(--color-blue);
     position: relative;
     z-index: 2;
-    -webkit-filter: drop-shadow(0 1px 0 var(--color-rose))
-            drop-shadow(0 2px 0 var(--color-rose))
-            drop-shadow(0 3px 0 var(--color-rose))
-            drop-shadow(0 4px 0 var(--color-rose));
-    filter: drop-shadow(0 1px 0 var(--color-rose))
-            drop-shadow(0 2px 0 var(--color-rose))
-            drop-shadow(0 3px 0 var(--color-rose))
-            drop-shadow(0 4px 0 var(--color-rose));
+    /* polygon fourni — Y rescalé à 0-100% pour occuper toute la hauteur */
+    -webkit-clip-path: polygon(0 13%, 100% 0, 95% 100%, 6% 84%);
+    clip-path: polygon(0 13%, 100% 0, 95% 100%, 6% 84%);
+    -webkit-filter: drop-shadow(0 1px 0 var(--color-dark-blue))
+            drop-shadow(0 2px 0 var(--color-dark-blue))
+            drop-shadow(0 3px 0 var(--color-dark-blue))
+            drop-shadow(0 4px 0 var(--color-dark-blue));
+    filter: drop-shadow(0 1px 0 var(--color-dark-blue))
+            drop-shadow(0 2px 0 var(--color-dark-blue))
+            drop-shadow(0 3px 0 var(--color-dark-blue))
+            drop-shadow(0 4px 0 var(--color-dark-blue));
 }
 
 .pt-word-tonnerre {
@@ -610,6 +610,9 @@ h2 {
     position: relative;
     z-index: 1;
     margin-top: -28px;
+    /* polygon fourni — Y rescalé à 0-100% */
+    -webkit-clip-path: polygon(0 0, 100% 0, 94% 100%, 0 98%);
+    clip-path: polygon(0 0, 100% 0, 94% 100%, 0 98%);
     -webkit-filter: drop-shadow(0 1px 0 var(--color-blue))
             drop-shadow(0 2px 0 var(--color-blue))
             drop-shadow(0 3px 0 var(--color-blue))
@@ -718,9 +721,9 @@ h2 {
     padding: 14px 32px;
     line-height: 1;
     box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.55);
-    /* Label hexagonal simple — pas torn-paper, ne ressemble pas au bouton */
-    -webkit-clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
-    clip-path: polygon(5% 0%, 95% 0%, 100% 50%, 95% 100%, 5% 100%, 0% 50%);
+    /* polygon fourni — Y rescalé à 0-100% */
+    -webkit-clip-path: polygon(0 12%, 92% 4%, 100% 100%, 0 96%);
+    clip-path: polygon(0 12%, 92% 4%, 100% 100%, 0 96%);
     -webkit-filter: drop-shadow(0 1px 0 var(--color-dark-blue))
             drop-shadow(0 2px 0 var(--color-dark-blue))
             drop-shadow(0 3px 0 var(--color-dark-blue));
