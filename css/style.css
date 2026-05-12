@@ -595,14 +595,15 @@ h2 {
     /* polygon fourni — Y rescalé à 0-100% pour occuper toute la hauteur */
     -webkit-clip-path: polygon(0 13%, 100% 0, 95% 100%, 6% 84%);
     clip-path: polygon(0 13%, 100% 0, 95% 100%, 6% 84%);
-    -webkit-filter: drop-shadow(0 1px 0 var(--color-dark-blue))
-            drop-shadow(0 2px 0 var(--color-dark-blue))
-            drop-shadow(0 3px 0 var(--color-dark-blue))
-            drop-shadow(0 4px 0 var(--color-dark-blue));
-    filter: drop-shadow(0 1px 0 var(--color-dark-blue))
-            drop-shadow(0 2px 0 var(--color-dark-blue))
-            drop-shadow(0 3px 0 var(--color-dark-blue))
-            drop-shadow(0 4px 0 var(--color-dark-blue));
+    /* Ombre diagonale bas-droite en bleu foncé */
+    -webkit-filter: drop-shadow(1px 1px 0 var(--color-dark-blue))
+            drop-shadow(2px 2px 0 var(--color-dark-blue))
+            drop-shadow(3px 3px 0 var(--color-dark-blue))
+            drop-shadow(4px 4px 0 var(--color-dark-blue));
+    filter: drop-shadow(1px 1px 0 var(--color-dark-blue))
+            drop-shadow(2px 2px 0 var(--color-dark-blue))
+            drop-shadow(3px 3px 0 var(--color-dark-blue))
+            drop-shadow(4px 4px 0 var(--color-dark-blue));
 }
 
 .pt-word-tonnerre {
@@ -613,14 +614,15 @@ h2 {
     /* polygon fourni — Y rescalé à 0-100% */
     -webkit-clip-path: polygon(0 0, 100% 0, 94% 100%, 0 98%);
     clip-path: polygon(0 0, 100% 0, 94% 100%, 0 98%);
-    -webkit-filter: drop-shadow(0 1px 0 var(--color-blue))
-            drop-shadow(0 2px 0 var(--color-blue))
-            drop-shadow(0 3px 0 var(--color-blue))
-            drop-shadow(0 4px 0 var(--color-blue));
-    filter: drop-shadow(0 1px 0 var(--color-blue))
-            drop-shadow(0 2px 0 var(--color-blue))
-            drop-shadow(0 3px 0 var(--color-blue))
-            drop-shadow(0 4px 0 var(--color-blue));
+    /* Ombre diagonale bas-gauche en bleu foncé */
+    -webkit-filter: drop-shadow(-1px 1px 0 var(--color-dark-blue))
+            drop-shadow(-2px 2px 0 var(--color-dark-blue))
+            drop-shadow(-3px 3px 0 var(--color-dark-blue))
+            drop-shadow(-4px 4px 0 var(--color-dark-blue));
+    filter: drop-shadow(-1px 1px 0 var(--color-dark-blue))
+            drop-shadow(-2px 2px 0 var(--color-dark-blue))
+            drop-shadow(-3px 3px 0 var(--color-dark-blue))
+            drop-shadow(-4px 4px 0 var(--color-dark-blue));
 }
 
 /* Bandeau date : conteneur clip-path avec contour rose + gradient bleu intérieur */
@@ -632,18 +634,16 @@ h2 {
     -webkit-clip-path: polygon(35% 0%, 55% 3%, 69% 0%, 88% 1%, 100% 0%, 95% 46%, 100% 97%, 75% 99%, 65% 96%, 56% 98%, 29% 96%, 0% 100%, 7% 31%, 0% 4%);
     clip-path: polygon(35% 0%, 55% 3%, 69% 0%, 88% 1%, 100% 0%, 95% 46%, 100% 97%, 75% 99%, 65% 96%, 56% 98%, 29% 96%, 0% 100%, 7% 31%, 0% 4%);
     -webkit-filter: drop-shadow(0 1px 0 var(--color-dark-blue))
-            drop-shadow(0 2px 0 var(--color-dark-blue))
-            drop-shadow(0 3px 0 var(--color-dark-blue));
+            drop-shadow(0 2px 0 var(--color-dark-blue));
     filter: drop-shadow(0 1px 0 var(--color-dark-blue))
-            drop-shadow(0 2px 0 var(--color-dark-blue))
-            drop-shadow(0 3px 0 var(--color-dark-blue));
+            drop-shadow(0 2px 0 var(--color-dark-blue));
 }
 
 .pt-date-banner {
     display: inline-flex;
     align-items: center;
-    gap: 18px;
-    padding: 14px 32px;
+    gap: 22px;
+    padding: 22px 48px;
     line-height: 1;
     background: linear-gradient(135deg, #170B40 0%, #2B187B 50%, #1A0E5F 100%);
     box-shadow: inset 0 2px 0 0 rgba(255, 255, 255, 0.18);
@@ -687,17 +687,15 @@ h2 {
 .pt-date-day {
     color: var(--color-rose);
     text-shadow:
-        0 0 6px rgba(253, 126, 219, 0.9),
-        0 0 14px rgba(253, 126, 219, 0.6),
-        0 0 24px rgba(253, 126, 219, 0.35);
+        0 0 4px rgba(253, 126, 219, 0.5),
+        0 0 10px rgba(253, 126, 219, 0.25);
 }
 
 .pt-date-month {
     color: var(--color-blue);
     text-shadow:
-        0 0 6px rgba(1, 255, 255, 0.9),
-        0 0 14px rgba(1, 255, 255, 0.6),
-        0 0 24px rgba(1, 255, 255, 0.35);
+        0 0 4px rgba(1, 255, 255, 0.5),
+        0 0 10px rgba(1, 255, 255, 0.25);
 }
 
 /* Venue : ANGERS label simple + L'ARCHE stack même couleur */
@@ -743,9 +741,10 @@ h2 {
 .pt-venue-name {
     font-family: 'TBJ Fluke', sans-serif;
     font-weight: bold;
-    font-size: 38px;
+    /* Calibré pour que L'ARCHE et "Rooftop & Restaurant" aient des largeurs naturelles proches */
+    font-size: clamp(34px, 4.5vw, 46px);
     color: white;
-    letter-spacing: 2px;
+    letter-spacing: 0.04em;
     line-height: 1;
     text-align: left;
 }
@@ -753,15 +752,14 @@ h2 {
 .pt-venue-sub {
     font-family: 'TBJ Fluke', sans-serif;
     font-weight: bold;
-    font-size: 13px;
+    font-size: clamp(10px, 1.3vw, 13px);
     color: white;
-    letter-spacing: 2.4px;
+    letter-spacing: 0.18em;
     text-transform: uppercase;
     /* L'ARCHE collé au sous-titre */
     margin-top: 0;
-    text-align: left;
     align-self: stretch;
-    /* justifie pour étirer sur la largeur de L'ARCHE */
+    /* justifie pour absorber tout résiduel d'écart entre les deux largeurs */
     text-align: justify;
     text-align-last: justify;
 }
@@ -797,15 +795,8 @@ h2 {
         gap: 14px;
     }
     .pt-venue-city {
-        font-size: 18px;
-        padding: 11px 22px;
-    }
-    .pt-venue-name {
-        font-size: 28px;
-    }
-    .pt-venue-sub {
-        font-size: 10px;
-        letter-spacing: 1.6px;
+        font-size: 22px;
+        padding: 16px 22px 10px 22px;
     }
     .pt-deco {
         width: 40px !important;
