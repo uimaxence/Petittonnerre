@@ -102,117 +102,119 @@ h2 {
 
 /* Cathédrale Saint-Maurice : tall + thin, côté gauche, en arrière-plan */
 .hero-building-cathedrale {
-    left: 3%;
-    width: 180px;
+    left: -3%;
+    width: 270px;
     z-index: 2;
-    bottom: -10px;
+    bottom: -50px;
 }
 
 /* Château d'Angers : large silhouette à gauche-centre, au premier plan */
 .hero-building-chateau {
-    left: 8%;
-    width: 480px;
+    left: -12%;
+    width: 720px;
     z-index: 4;
-    bottom: -30px;
+    bottom: -95px;
 }
 
 /* Immeuble moderne : silhouette horizontale côté droit, en milieu de plan */
 .hero-building-immeuble {
-    right: 12%;
-    width: 380px;
+    right: -12%;
+    width: 570px;
     z-index: 3;
-    bottom: -40px;
+    bottom: -105px;
 }
 
 /* Statue (Roi René) : tall + thin, côté droit, en arrière-plan */
 .hero-building-statue {
-    right: 3%;
-    width: 130px;
+    right: -3%;
+    width: 195px;
     z-index: 2;
-    bottom: -10px;
+    bottom: -50px;
 }
 
 /* Tablette (768 - 1199) */
 @media (max-width: 1199px) and (min-width: 768px) {
     .hero-building-cathedrale {
-        left: 2%;
-        width: 150px;
+        left: -4%;
+        width: 225px;
     }
     .hero-building-chateau {
-        left: 6%;
-        width: 380px;
+        left: -14%;
+        width: 570px;
     }
     .hero-building-immeuble {
-        right: 8%;
-        width: 320px;
+        right: -14%;
+        width: 480px;
     }
     .hero-building-statue {
-        right: 2%;
-        width: 110px;
+        right: -4%;
+        width: 165px;
     }
 }
 
 /* Grand desktop (1200+) */
 @media (min-width: 1200px) {
     .hero-building-cathedrale {
-        width: 220px;
-        bottom: -15px;
-    }
-    .hero-building-chateau {
-        left: 10%;
-        width: 600px;
-        bottom: -50px;
-    }
-    .hero-building-immeuble {
-        right: 14%;
-        width: 480px;
+        width: 330px;
+        left: -3%;
         bottom: -60px;
     }
+    .hero-building-chateau {
+        left: -10%;
+        width: 900px;
+        bottom: -120px;
+    }
+    .hero-building-immeuble {
+        right: -10%;
+        width: 720px;
+        bottom: -130px;
+    }
     .hero-building-statue {
-        width: 160px;
-        bottom: -15px;
+        width: 240px;
+        right: -3%;
+        bottom: -60px;
     }
 }
 
 /* XL desktop (1600+) */
 @media (min-width: 1600px) {
-    .hero-building-cathedrale { width: 260px; left: 5%; }
-    .hero-building-chateau { width: 720px; left: 14%; bottom: -70px; }
-    .hero-building-immeuble { width: 560px; right: 16%; bottom: -80px; }
-    .hero-building-statue { width: 200px; right: 5%; }
+    .hero-building-cathedrale { width: 390px; left: -3%; bottom: -70px; }
+    .hero-building-chateau { width: 1080px; left: -8%; bottom: -150px; }
+    .hero-building-immeuble { width: 840px; right: -8%; bottom: -160px; }
+    .hero-building-statue { width: 300px; right: -3%; bottom: -70px; }
 }
 
 /* Mobile (max 767) — on garde les 4 mais on rapproche et réduit */
 @media (max-width: 767px) {
     .hero-building-cathedrale {
-        left: -2%;
-        width: 90px;
-        bottom: 0;
+        left: -12%;
+        width: 135px;
+        bottom: -30px;
     }
     .hero-building-chateau {
-        left: 0;
-        width: 70%;
-        max-width: 320px;
-        bottom: -20px;
+        left: -22%;
+        width: 90%;
+        max-width: 480px;
+        bottom: -60px;
     }
     .hero-building-immeuble {
-        right: 0;
-        width: 55%;
-        max-width: 240px;
-        bottom: -28px;
+        right: -22%;
+        width: 75%;
+        max-width: 360px;
+        bottom: -70px;
     }
     .hero-building-statue {
-        right: -2%;
-        width: 70px;
-        bottom: 0;
+        right: -12%;
+        width: 105px;
+        bottom: -30px;
     }
 }
 
 @media (max-width: 420px) {
-    .hero-building-cathedrale { width: 70px; left: -4%; }
-    .hero-building-chateau { width: 75%; bottom: -15px; }
-    .hero-building-immeuble { width: 60%; bottom: -20px; }
-    .hero-building-statue { width: 56px; right: -4%; }
+    .hero-building-cathedrale { width: 105px; left: -14%; }
+    .hero-building-chateau { width: 95%; bottom: -45px; left: -25%; }
+    .hero-building-immeuble { width: 85%; bottom: -55px; right: -25%; }
+    .hero-building-statue { width: 84px; right: -14%; }
 }
 
 /* Tagline hero (sous le logo) */
@@ -392,63 +394,15 @@ h2 {
 /* #endregion */
 
 
-/* Section Pitch asso (placeholder — à remplacer par texte définitif) */
-#pitch-asso {
-    margin: 360px 0 200px 0;
-    padding: 0 30px 60px 30px;
-    display: flex;
-    justify-content: center;
-    position: relative;
-    z-index: 2;
-    background-color: var(--color-dark);
-}
-
-.pitch-content {
-    max-width: 720px;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    gap: 24px;
-}
-
-.pitch-title {
-    font-family: 'TBJ Fluke', sans-serif;
-    font-weight: bold;
-    font-size: 42px;
-    color: white;
-    line-height: 1;
-}
-
-.pitch-placeholder {
-    font-family: 'Poppins', sans-serif;
-    font-weight: 300;
-    font-size: 17px;
-    color: rgba(255, 255, 255, 0.85);
-    line-height: 1.6;
-}
-
-@media (max-width: 768px) {
-    #pitch-asso {
-        margin: 160px 24px 140px 24px;
-    }
-    .pitch-title {
-        font-size: 32px;
-    }
-    .pitch-placeholder {
-        font-size: 15px;
-    }
-}
-
 /* Section Premier Tonnerre (event 28 mai) — layout inspiré de l'affiche */
 #projet.premier-tonnerre {
     position: relative;
-    margin: 0 0 140px 0;
+    margin: 280px 0 140px 0;
     padding: 80px 30px 90px 30px;
     display: flex;
     justify-content: center;
     background-image:
-        linear-gradient(rgba(19, 11, 50, 0.25), rgba(19, 11, 50, 0.35)),
+        linear-gradient(rgba(19, 11, 50, 0.10), rgba(19, 11, 50, 0.15)),
         url('../assets/img/rooftop.webp');
     background-size: cover;
     background-position: center;
@@ -601,7 +555,46 @@ h2 {
 }
 
 .pt-word-wrap-tonnerre {
-    margin-top: -28px;
+    margin-top: -14px;
+}
+
+/* Badge "19H" + verre en superposition sur TONNERRE, angle bas droit */
+.pt-glass-badge {
+    position: absolute;
+    bottom: -28px;
+    right: -32px;
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    padding: 8px 16px 6px 12px;
+    background-color: white;
+    line-height: 1;
+    z-index: 6;
+    pointer-events: none;
+    transform: rotate(-4deg);
+    -webkit-clip-path: polygon(6% 8%, 96% 0%, 100% 92%, 4% 100%);
+    clip-path: polygon(6% 8%, 96% 0%, 100% 92%, 4% 100%);
+    -webkit-filter: drop-shadow(0 1px 0 var(--color-dark-blue))
+            drop-shadow(0 2px 0 var(--color-dark-blue))
+            drop-shadow(0 3px 0 var(--color-dark-blue));
+    filter: drop-shadow(0 1px 0 var(--color-dark-blue))
+            drop-shadow(0 2px 0 var(--color-dark-blue))
+            drop-shadow(0 3px 0 var(--color-dark-blue));
+}
+
+.pt-glass-icon {
+    width: 34px;
+    height: auto;
+    display: block;
+}
+
+.pt-glass-time {
+    font-family: 'TBJ Fluke', sans-serif;
+    font-weight: bold;
+    font-size: 32px;
+    color: var(--color-dark-blue);
+    letter-spacing: 1px;
+    line-height: 1;
 }
 
 /* Span "shadow" : clone clip-pathé du mot, dark-blue, offset via transform.
@@ -795,14 +788,26 @@ h2 {
 @media (max-width: 600px) {
     #projet.premier-tonnerre {
         padding: 60px 20px 80px 20px;
-        margin-bottom: 100px;
+        margin: 160px 0 100px 0;
     }
     .pt-title-word {
         padding: 14px 40px;
         font-size: clamp(40px, 13vw, 64px);
     }
     .pt-word-wrap-tonnerre {
-        margin-top: -18px;
+        margin-top: -8px;
+    }
+    .pt-glass-badge {
+        bottom: -18px;
+        right: -18px;
+        padding: 6px 12px 4px 10px;
+        gap: 4px;
+    }
+    .pt-glass-icon {
+        width: 24px;
+    }
+    .pt-glass-time {
+        font-size: 22px;
     }
     .pt-date-banner {
         gap: 12px;
@@ -937,7 +942,7 @@ h2 {
 .valeurs-cards {
     display: flex;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: stretch;
     justify-content: center;
 }
 
@@ -945,12 +950,14 @@ h2 {
     width: 80%;
     display: flex;
     flex-direction: column;
-    align-items: left;
-    justify-content: center;
-    max-width: 300px;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 14px;
+    max-width: 320px;
     background: var(--color-dark-blue);
     border: 2px solid var(--color-blue);
-    padding: 30px;
+    padding: 32px 44px;
+    box-sizing: border-box;
     box-shadow: 0 0 10px rgba(253, 126, 219, 0.3), inset 0 0 10px rgba(253, 126, 219, 0.1);
 }
 
@@ -1005,9 +1012,9 @@ h2 {
 .valeur-title {
     font-family: 'TBJ Fluke', sans-serif;
     font-weight: bold;
-    font-size: 42px;
+    font-size: 40px;
     color: white;
-    margin-bottom: 15px;
+    line-height: 1.05;
 }
 
 .valeur-description {
@@ -1031,10 +1038,8 @@ h2 {
     
     .valeur-card {
         max-width: 100%;
-    }
-    
-    .valeur-card {
-        padding: 25px;
+        padding: 26px 30px;
+        gap: 10px;
     }
     
     .valeur-title {
@@ -1069,39 +1074,33 @@ h2 {
 /* Positionnement et tailles aléatoires */
 .svg-nuage {
     top: 43px;
-    left: 25px;
+    left: -15px;
     width: 200px;
 }
 
 .svg-eclair-1 {
     top: -90px;
     z-index: 3;
-    right: -50px;
+    right: -80px;
     width: 200px;
 }
 
 .svg-eclair-2 {
     top: 120px;
-    left: -20px;
+    left: -45px;
     width: 100px;
 }
 
 .svg-plume-1 {
     bottom: -30px;
-    left: -15px;
-    width: 200px;
+    left: -55px;
+    width: 160px;
     z-index: 4;
-}
-
-.svg-plume-2 {
-    top: 150px;
-    right: 80px;
-    width: 70px;
 }
 
 .svg-fer {
     bottom: 80px;
-    right: 5px;
+    right: -30px;
     width: 150px;
 }
 
@@ -1124,27 +1123,21 @@ h2 {
     .svg-eclair-1 {
         top: -100px;
         z-index: 3;
-        right: -60px;
+        right: -85px;
         width: 170px;
     }
 
 .svg-eclair-2 {
     top: 120px;
-    left: -20px;
+    left: -45px;
     width: 20%;
 }
 
 .svg-plume-1 {
     bottom: -40px;
-    left: -35px;
-    width: 200px;
+    left: -65px;
+    width: 160px;
     z-index: 4;
-}
-
-.svg-plume-2 {
-    top: 180px;
-    right: 50px;
-    width: 70px;
 }
 }
 
