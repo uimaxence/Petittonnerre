@@ -115,24 +115,38 @@ document.addEventListener('DOMContentLoaded', function() {
     updateParallax(); // Initialisation
 });
 
+// ─────────────────────────────────────────────────────────────
+// Configuration EmailJS
+// 1. Créer un compte sur https://www.emailjs.com/ (connexion Google)
+// 2. Ajouter un service "Gmail" relié à petittonnerreproduction@gmail.com → copier le Service ID
+// 3. Créer un template avec les variables {{prenom}} {{nom}} {{email}} {{message}} → copier le Template ID
+// 4. Récupérer la Public Key dans Account > General → la coller ci-dessous
+// ─────────────────────────────────────────────────────────────
+const EMAILJS_CONFIG = {
+    publicKey: 'dGpc3mcK6MyBNAXvS',
+    serviceId: 'service_ad80gv7',
+    templateId: 'template_69udq4j'
+};
+
 // Gestion du formulaire de contact
 document.addEventListener('DOMContentLoaded', function() {
     const contactForm = document.getElementById('contact-form');
-    
+
+    // Init EmailJS si SDK chargé et clé renseignée
+    if (typeof emailjs !== 'undefined' && EMAILJS_CONFIG.publicKey !== 'YOUR_PUBLIC_KEY') {
+        emailjs.init({ publicKey: EMAILJS_CONFIG.publicKey });
+    }
+
     // Gestion des labels flottants
     const inputs = document.querySelectorAll('#contact-form input, #contact-form textarea');
-    
+
     inputs.forEach(input => {
-        // Vérifier si le champ a déjà du contenu au chargement
         if (input.value) {
             input.classList.add('has-value');
         }
-        
-        // Ajouter/retirer la classe au focus/blur
         input.addEventListener('focus', function() {
             this.classList.add('has-value');
         });
-        
         input.addEventListener('blur', function() {
             if (this.value) {
                 this.classList.add('has-value');
@@ -140,8 +154,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 this.classList.remove('has-value');
             }
         });
-        
-        // Ajouter/retirer la classe pendant la saisie
         input.addEventListener('input', function() {
             if (this.value) {
                 this.classList.add('has-value');
@@ -150,64 +162,83 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
-    
+
     if (contactForm) {
+        const submitBtn = contactForm.querySelector('button[type="submit"]');
+        const messageDiv = document.getElementById('form-message');
+
+        function showMessage(text, type = 'error') {
+            if (!messageDiv) return;
+            messageDiv.textContent = text;
+            messageDiv.className = `form-message ${type} show`;
+            setTimeout(() => {
+                messageDiv.classList.remove('show');
+            }, type === 'success' ? 5000 : 6000);
+        }
+
         contactForm.addEventListener('submit', function(e) {
             e.preventDefault();
-            
+
             const formData = new FormData(this);
             const data = {
-                prenom: formData.get('prenom'),
-                nom: formData.get('nom'),
-                email: formData.get('email'),
-                message: formData.get('message')
+                prenom: (formData.get('prenom') || '').trim(),
+                nom: (formData.get('nom') || '').trim(),
+                email: (formData.get('email') || '').trim(),
+                message: (formData.get('message') || '').trim()
             };
-            
-            const messageDiv = document.getElementById('form-message');
-            
-            // Fonction pour afficher un message
-            function showMessage(text, type = 'error') {
-                if (messageDiv) {
-                    messageDiv.textContent = text;
-                    messageDiv.className = `form-message ${type} show`;
-                    
-                    // Masquer après 5 secondes pour les erreurs, 4 secondes pour le succès
-                    setTimeout(() => {
-                        messageDiv.classList.remove('show');
-                    }, type === 'success' ? 4000 : 5000);
-                }
-            }
-            
-            // Validation
+
             if (!data.prenom || !data.nom || !data.email || !data.message) {
                 showMessage('Veuillez remplir tous les champs obligatoires.', 'error');
                 return;
             }
-            
-            // Validation email
+
             const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
             if (!emailRegex.test(data.email)) {
                 showMessage('Veuillez entrer une adresse email valide.', 'error');
                 return;
             }
-            
-            // Envoi par mailto vers petittonnerreproduction@gmail.com
-            const subject = encodeURIComponent('Contact Petit Tonnerre Production');
-            const body = encodeURIComponent(
-                'Prénom : ' + data.prenom + '\n' +
-                'Nom : ' + data.nom + '\n' +
-                'Email : ' + data.email + '\n\n' +
-                'Message :\n' + data.message
-            );
-            const mailtoLink = 'mailto:petittonnerreproduction@gmail.com?subject=' + subject + '&body=' + body;
-            window.location.href = mailtoLink;
-            
-            showMessage('Votre client mail va s\'ouvrir. Envoyez le message pour nous contacter.', 'success');
-            this.reset();
-            
-            // Retirer la classe has-value après reset
-            inputs.forEach(input => {
-                input.classList.remove('has-value');
+
+            if (typeof emailjs === 'undefined') {
+                showMessage('Service d\'envoi indisponible. Veuillez réessayer plus tard.', 'error');
+                return;
+            }
+
+            if (EMAILJS_CONFIG.publicKey === 'YOUR_PUBLIC_KEY'
+                || EMAILJS_CONFIG.serviceId === 'YOUR_SERVICE_ID'
+                || EMAILJS_CONFIG.templateId === 'YOUR_TEMPLATE_ID') {
+                showMessage('Formulaire pas encore configuré. Contactez-nous via Instagram en attendant.', 'error');
+                console.warn('[EmailJS] Configuration incomplète — remplir EMAILJS_CONFIG dans js/script.js');
+                return;
+            }
+
+            const originalBtnLabel = submitBtn ? submitBtn.textContent : '';
+            if (submitBtn) {
+                submitBtn.disabled = true;
+                submitBtn.textContent = 'Envoi…';
+            }
+
+            emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
+                prenom: data.prenom,
+                nom: data.nom,
+                from_name: `${data.prenom} ${data.nom}`,
+                email: data.email,
+                reply_to: data.email,
+                message: data.message
+            })
+            .then(() => {
+                showMessage('Message envoyé. Nous vous répondrons rapidement.', 'success');
+                contactForm.reset();
+                inputs.forEach(input => input.classList.remove('has-value'));
+            })
+            .catch((error) => {
+                console.error('[EmailJS] échec envoi :', error);
+                showMessage('Une erreur est survenue. Veuillez réessayer dans un instant.', 'error');
+            })
+            .finally(() => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.textContent = originalBtnLabel;
+                }
             });
         });
     }
