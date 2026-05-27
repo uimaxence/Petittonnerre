@@ -1,3 +1,40 @@
+// Modale HelloAsso (bouton flottant "Faire un don")
+document.addEventListener('DOMContentLoaded', function() {
+    const openBtn = document.getElementById('openHaOverlay');
+    const modal = document.getElementById('haWidgetModal');
+    const closeBtn = document.getElementById('closeHaWidgetBtn');
+    if (!openBtn || !modal || !closeBtn) return;
+
+    const body = document.body;
+
+    function openModal() {
+        modal.hidden = false;
+        modal.classList.add('is-open');
+        body.style.overflow = 'hidden';
+        body.style.overscrollBehaviorY = 'none';
+    }
+
+    function closeModal() {
+        modal.classList.remove('is-open');
+        modal.hidden = true;
+        body.style.overflow = '';
+        body.style.overscrollBehaviorY = '';
+    }
+
+    openBtn.addEventListener('click', openModal);
+    closeBtn.addEventListener('click', closeModal);
+
+    // Fermer en cliquant sur le backdrop (hors contenu)
+    modal.addEventListener('click', function(e) {
+        if (e.target === modal) closeModal();
+    });
+
+    // Fermer avec la touche Échap
+    document.addEventListener('keydown', function(e) {
+        if (e.key === 'Escape' && modal.classList.contains('is-open')) closeModal();
+    });
+});
+
 // Scroll fluide : ancres (liens #) et boutons avec data-scroll-to
 function smoothScrollTo(targetId) {
     var target = document.querySelector(targetId);

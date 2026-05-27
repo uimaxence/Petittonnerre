@@ -35,7 +35,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=20">
+    <link rel="stylesheet" href="css/style.css?v=21">
 </head>
 <body>
     <!-- Navigation -->
@@ -234,6 +234,29 @@
             </div>
         </div>
         </footer>
+    </div>
+
+    <!-- Bouton flottant : Faire un don (HelloAsso) -->
+    <div class="button-wrapper ha-fab-wrapper">
+        <button type="button" id="openHaOverlay" class="btn hero-button ha-fab-btn" aria-label="Faire un don">Faire un don</button>
+    </div>
+
+    <!-- Modale : formulaire HelloAsso -->
+    <div id="haWidgetModal" class="ha-modal" role="dialog" aria-modal="true" aria-label="Formulaire de don HelloAsso" hidden>
+        <button id="closeHaWidgetBtn" class="ha-modal-close" type="button" aria-label="Fermer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <line x1="6" y1="6" x2="18" y2="18" stroke="#2B187B" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18" y1="6" x2="6" y2="18" stroke="#2B187B" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+        <div class="ha-modal-content">
+            <iframe
+                id="haWidget"
+                src="https://www.helloasso.com/associations/petit-tonnerre-production/formulaires/1/widget?view=overlay"
+                allow="payment"
+                title="Formulaire de don – Petit Tonnerre Production"
+            ></iframe>
+        </div>
     </div>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
