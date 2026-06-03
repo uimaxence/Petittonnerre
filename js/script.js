@@ -25,13 +25,20 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentIndex = 0;
 
+    // Sur mobile (< 768px), on ne montre qu'un échantillon réparti (~15 photos)
+    // pour éviter un scroll trop long. Le lightbox navigue uniquement parmi ces photos.
+    const isMobile = window.matchMedia('(max-width: 767px)').matches;
+    const photos = isMobile
+        ? GALERIE_PHOTOS.filter((_, i) => i % 3 === 0)
+        : GALERIE_PHOTOS;
+
     // Rendu de la grille
     const frag = document.createDocumentFragment();
-    GALERIE_PHOTOS.forEach((file, i) => {
+    photos.forEach((file, i) => {
         const btn = document.createElement('button');
         btn.type = 'button';
         btn.className = 'galerie-item';
-        btn.setAttribute('aria-label', `Photo ${i + 1} sur ${GALERIE_PHOTOS.length}`);
+        btn.setAttribute('aria-label', `Photo ${i + 1} sur ${photos.length}`);
         btn.dataset.index = i;
         const img = document.createElement('img');
         img.src = GALERIE_DIR + file;
@@ -59,19 +66,19 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateLightbox() {
-        const file = GALERIE_PHOTOS[currentIndex];
+        const file = photos[currentIndex];
         imgEl.src = GALERIE_DIR + file;
         imgEl.alt = `Premier Tonnerre — 28 mai 2026 — photo ${currentIndex + 1}`;
-        counter.textContent = `${currentIndex + 1} / ${GALERIE_PHOTOS.length}`;
+        counter.textContent = `${currentIndex + 1} / ${photos.length}`;
     }
 
     function showPrev() {
-        currentIndex = (currentIndex - 1 + GALERIE_PHOTOS.length) % GALERIE_PHOTOS.length;
+        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
         updateLightbox();
     }
 
     function showNext() {
-        currentIndex = (currentIndex + 1) % GALERIE_PHOTOS.length;
+        currentIndex = (currentIndex + 1) % photos.length;
         updateLightbox();
     }
 
