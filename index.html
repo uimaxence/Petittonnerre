@@ -35,7 +35,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=21">
+    <link rel="stylesheet" href="css/style.css?v=23">
 </head>
 <body>
     <!-- Navigation -->
@@ -56,15 +56,19 @@
                 <img class="hero-logo" src="assets/img/logo-pt-production.webp" alt="Logo Petit Tonnerre Production">
                 <p class="hero-tagline">Association culturelle angevine <span class="hero-tagline-sep">|</span> Rendez-vous musicaux et familiaux</p>
             </div>
-            <div class="button-wrapper" data-scroll-to="#projet">
+            <div class="button-wrapper" data-scroll-to="#galerie">
                 <button type="button" class="btn hero-button">Découvrir</button>
             </div>
         </div>
     </section>
 
-    <!-- Section Premier Tonnerre -->
+    <!--
+        Section Premier Tonnerre — ARCHIVÉE après l'événement du 28 mai 2026.
+        Conservée pour réutilisation potentielle (autre soirée à venir).
+        Pour la réactiver : décommenter ce bloc et masquer/supprimer #galerie.
+        Styles CSS associés conservés dans css/style.css (#projet.premier-tonnerre).
+
     <section id="projet" class="premier-tonnerre">
-        <!-- Décor de fond : grille + assets dispatchés + étoiles scintillantes -->
         <div class="pt-bg" aria-hidden="true">
             <div class="pt-grid"></div>
             <img class="pt-deco pt-deco-1" src="assets/img/nuage.svg" alt="">
@@ -125,6 +129,48 @@
             </div>
         </div>
     </section>
+    -->
+
+    <!-- Section Galerie : retour en images du Premier Tonnerre (28 mai 2026) -->
+    <section id="galerie">
+        <div class="galerie-bg" aria-hidden="true">
+            <img class="galerie-deco galerie-deco-1" src="assets/img/eclair.svg" alt="">
+            <img class="galerie-deco galerie-deco-2" src="assets/img/plume.svg" alt="">
+            <img class="galerie-deco galerie-deco-3" src="assets/img/nuage.svg" alt="">
+        </div>
+        <div class="galerie-content">
+            <div class="galerie-header">
+                <p class="galerie-eyebrow">Jeudi 28 mai 2026 <span class="galerie-eyebrow-sep">|</span> L'Arche, Angers</p>
+                <h2 class="galerie-title">Retour en images</h2>
+                <p class="galerie-subtitle">Merci à toutes celles et ceux venus partager cette première soirée avec nous.</p>
+            </div>
+            <div class="galerie-grid" id="galerie-grid"></div>
+        </div>
+    </section>
+
+    <!-- Lightbox galerie -->
+    <div id="galerie-lightbox" class="galerie-lightbox" role="dialog" aria-modal="true" aria-label="Visualisation photo" hidden>
+        <button class="galerie-lightbox-close" type="button" aria-label="Fermer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <line x1="6" y1="6" x2="18" y2="18" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18" y1="6" x2="6" y2="18" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+        <button class="galerie-lightbox-nav galerie-lightbox-prev" type="button" aria-label="Photo précédente">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="galerie-lightbox-nav galerie-lightbox-next" type="button" aria-label="Photo suivante">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <div class="galerie-lightbox-stage">
+            <img id="galerie-lightbox-img" src="" alt="">
+        </div>
+        <div class="galerie-lightbox-counter" id="galerie-lightbox-counter"></div>
+    </div>
 
     <!-- Section Valeurs -->
     <div class="valeurs-wrapper">

@@ -1,3 +1,102 @@
+// Galerie : Premier Tonnerre du 28 mai 2026
+const GALERIE_PHOTOS = [
+    '_A7R3747.jpg', '_A7R3750.jpg', '_A7R3751.jpg', '_A7R3758.jpg', '_A7R3760.jpg',
+    '_A7R3764.jpg', '_A7R3765.jpg', '_A7R3768.jpg', '_A7R3774.jpg', '_A7R3778.jpg',
+    '_A7R3782.jpg', '_A7R3783.jpg', '_A7R3785.jpg', '_A7R3795.jpg', '_A7R3798.jpg',
+    '_A7R3809.jpg', '_A7R3811.jpg', '_A7R3815.jpg', '_A7R3819.jpg', '_A7R3820.jpg',
+    '_A7R3826.jpg', '_A7R3833.jpg', '_A7R3834.jpg', '_A7R3839.jpg', '_A7R3843.jpg',
+    '_A7R3850.jpg', '_A7R3853.jpg', '_A7R3857.jpg', '_A7R3859.jpg', '_A7R3861.jpg',
+    '_A7R3863.jpg', '_A7R3867.jpg', '_A7R3869.jpg', '_A7R3872.jpg', '_A7R3875.jpg',
+    '_A7R3876.jpg', '_A7R3879.jpg', '_A7R3882.jpg', '_A7R3886.jpg', '_A7R3888.jpg',
+    '_A7R3891.jpg', '_A7R3893.jpg', '_A7R3897.jpg'
+];
+const GALERIE_DIR = 'assets/img/galerie/';
+
+document.addEventListener('DOMContentLoaded', function() {
+    const grid = document.getElementById('galerie-grid');
+    const lightbox = document.getElementById('galerie-lightbox');
+    if (!grid || !lightbox) return;
+
+    const imgEl = document.getElementById('galerie-lightbox-img');
+    const counter = document.getElementById('galerie-lightbox-counter');
+    const btnClose = lightbox.querySelector('.galerie-lightbox-close');
+    const btnPrev = lightbox.querySelector('.galerie-lightbox-prev');
+    const btnNext = lightbox.querySelector('.galerie-lightbox-next');
+
+    let currentIndex = 0;
+
+    // Rendu de la grille
+    const frag = document.createDocumentFragment();
+    GALERIE_PHOTOS.forEach((file, i) => {
+        const btn = document.createElement('button');
+        btn.type = 'button';
+        btn.className = 'galerie-item';
+        btn.setAttribute('aria-label', `Photo ${i + 1} sur ${GALERIE_PHOTOS.length}`);
+        btn.dataset.index = i;
+        const img = document.createElement('img');
+        img.src = GALERIE_DIR + file;
+        img.alt = `Premier Tonnerre — 28 mai 2026 — photo ${i + 1}`;
+        img.loading = 'lazy';
+        img.decoding = 'async';
+        btn.appendChild(img);
+        frag.appendChild(btn);
+    });
+    grid.appendChild(frag);
+
+    function openLightbox(index) {
+        currentIndex = index;
+        updateLightbox();
+        lightbox.hidden = false;
+        lightbox.classList.add('is-open');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closeLightbox() {
+        lightbox.classList.remove('is-open');
+        lightbox.hidden = true;
+        document.body.style.overflow = '';
+        imgEl.src = '';
+    }
+
+    function updateLightbox() {
+        const file = GALERIE_PHOTOS[currentIndex];
+        imgEl.src = GALERIE_DIR + file;
+        imgEl.alt = `Premier Tonnerre — 28 mai 2026 — photo ${currentIndex + 1}`;
+        counter.textContent = `${currentIndex + 1} / ${GALERIE_PHOTOS.length}`;
+    }
+
+    function showPrev() {
+        currentIndex = (currentIndex - 1 + GALERIE_PHOTOS.length) % GALERIE_PHOTOS.length;
+        updateLightbox();
+    }
+
+    function showNext() {
+        currentIndex = (currentIndex + 1) % GALERIE_PHOTOS.length;
+        updateLightbox();
+    }
+
+    grid.addEventListener('click', function(e) {
+        const item = e.target.closest('.galerie-item');
+        if (!item) return;
+        openLightbox(parseInt(item.dataset.index, 10));
+    });
+
+    btnClose.addEventListener('click', closeLightbox);
+    btnPrev.addEventListener('click', showPrev);
+    btnNext.addEventListener('click', showNext);
+
+    lightbox.addEventListener('click', function(e) {
+        if (e.target === lightbox) closeLightbox();
+    });
+
+    document.addEventListener('keydown', function(e) {
+        if (!lightbox.classList.contains('is-open')) return;
+        if (e.key === 'Escape') closeLightbox();
+        else if (e.key === 'ArrowLeft') showPrev();
+        else if (e.key === 'ArrowRight') showNext();
+    });
+});
+
 // Modale HelloAsso (bouton flottant "Faire un don")
 document.addEventListener('DOMContentLoaded', function() {
     const openBtn = document.getElementById('openHaOverlay');

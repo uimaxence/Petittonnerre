@@ -26,3 +26,6 @@ build/
 # Assets sources DA (lourds, garder en local uniquement)
 assets/assets_V2/
 assets/img/rooftop.png
+
+# Photos originales soirée 28 mai (bruts ~900 MB, versions web dans assets/img/galerie/)
+assets/img_soiree_28mai/
