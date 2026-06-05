@@ -32,23 +32,53 @@ document.addEventListener('DOMContentLoaded', function() {
         ? GALERIE_PHOTOS.filter((_, i) => i % 3 === 0)
         : GALERIE_PHOTOS;
 
-    // Rendu de la grille
-    const frag = document.createDocumentFragment();
-    photos.forEach((file, i) => {
-        const btn = document.createElement('button');
-        btn.type = 'button';
-        btn.className = 'galerie-item';
-        btn.setAttribute('aria-label', `Photo ${i + 1} sur ${photos.length}`);
-        btn.dataset.index = i;
-        const img = document.createElement('img');
-        img.src = GALERIE_DIR + file;
-        img.alt = `Premier Tonnerre — 28 mai 2026 — photo ${i + 1}`;
-        img.loading = 'lazy';
-        img.decoding = 'async';
-        btn.appendChild(img);
-        frag.appendChild(btn);
+    // Détermine le nombre de colonnes selon viewport
+    function getColCount() {
+        const w = window.innerWidth;
+        if (w <= 420) return 1;
+        if (w <= 767) return 2;
+        if (w <= 1199) return 3;
+        return 4;
+    }
+
+    // Rendu masonry : colonnes flex + distribution round-robin (équilibrage visuel fiable
+    // vs. column-count CSS qui empilait les portraits dans une seule colonne en mobile)
+    function renderGrid() {
+        grid.innerHTML = '';
+        const cols = getColCount();
+        const columns = [];
+        for (let c = 0; c < cols; c++) {
+            const col = document.createElement('div');
+            col.className = 'galerie-col';
+            columns.push(col);
+            grid.appendChild(col);
+        }
+        photos.forEach((file, i) => {
+            const btn = document.createElement('button');
+            btn.type = 'button';
+            btn.className = 'galerie-item';
+            btn.setAttribute('aria-label', `Photo ${i + 1} sur ${photos.length}`);
+            btn.dataset.index = i;
+            const img = document.createElement('img');
+            img.src = GALERIE_DIR + file;
+            img.alt = `Premier Tonnerre — 28 mai 2026 — photo ${i + 1}`;
+            img.loading = 'lazy';
+            img.decoding = 'async';
+            btn.appendChild(img);
+            columns[i % cols].appendChild(btn);
+        });
+    }
+    renderGrid();
+
+    // Re-rendre si on change de breakpoint (rotation tablette / resize fenêtre)
+    let lastCols = getColCount();
+    window.addEventListener('resize', function() {
+        const cols = getColCount();
+        if (cols !== lastCols) {
+            lastCols = cols;
+            renderGrid();
+        }
     });
-    grid.appendChild(frag);
 
     function openLightbox(index) {
         currentIndex = index;

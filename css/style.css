@@ -1616,29 +1616,32 @@ h2 {
     line-height: 1.5;
 }
 
-/* Grille masonry CSS columns */
+/* Grille masonry : colonnes flex (distribution round-robin en JS) */
 .galerie-grid {
-    column-count: 4;
-    column-gap: 14px;
-}
-
-@media (max-width: 1199px) {
-    .galerie-grid { column-count: 3; }
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
 }
 
 @media (max-width: 767px) {
-    .galerie-grid { column-count: 2; column-gap: 8px; }
+    .galerie-grid { gap: 8px; }
 }
 
-@media (max-width: 420px) {
-    .galerie-grid { column-count: 1; }
+.galerie-col {
+    flex: 1 1 0;
+    min-width: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+@media (max-width: 767px) {
+    .galerie-col { gap: 8px; }
 }
 
 .galerie-item {
     display: block;
     width: 100%;
-    margin: 0 0 14px;
-    break-inside: avoid;
     border: none;
     padding: 0;
     background: transparent;
@@ -1648,10 +1651,6 @@ h2 {
     position: relative;
     box-shadow: 0 4px 14px rgba(0, 0, 0, 0.35);
     transition: transform 0.25s ease, box-shadow 0.25s ease;
-}
-
-@media (max-width: 767px) {
-    .galerie-item { margin-bottom: 8px; }
 }
 
 .galerie-item:hover {
