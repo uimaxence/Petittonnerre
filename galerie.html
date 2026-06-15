@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Galerie photos du Premier Tonnerre — 28 mai 2026 à L'Arche, Angers. Petit Tonnerre Production.">
+    <title>Galerie – Premier Tonnerre | Petit Tonnerre Production</title>
+
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="assets/img/favicon-192.png">
+    <link rel="icon" type="image/png" sizes="512x512" href="assets/img/favicon-512.png">
+    <link rel="shortcut icon" type="image/png" href="assets/img/favicon-32.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="assets/img/apple-touch-icon.png">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://petittonnerre.fr/galerie.html">
+    <meta property="og:title" content="Galerie – Premier Tonnerre | Petit Tonnerre Production">
+    <meta property="og:description" content="Retour en images du Premier Tonnerre — 28 mai 2026 à L'Arche, Angers.">
+    <meta property="og:image" content="https://petittonnerre.fr/assets/img/og-image.jpg">
+    <meta property="og:image:type" content="image/jpeg">
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Petit Tonnerre Production">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Galerie – Premier Tonnerre | Petit Tonnerre Production">
+    <meta name="twitter:description" content="Retour en images du Premier Tonnerre — 28 mai 2026 à L'Arche, Angers.">
+    <meta name="twitter:image" content="https://petittonnerre.fr/assets/img/og-image.jpg">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css?v=28">
+</head>
+<body class="page-galerie">
+    <!-- Header minimal : logo + retour accueil -->
+    <header class="galerie-page-header">
+        <a href="index.html" class="galerie-page-back" aria-label="Retour à l'accueil">
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <path d="M19 12H5M11 18l-6-6 6-6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+            <span>Retour à l'accueil</span>
+        </a>
+        <a href="index.html" class="galerie-page-logo" aria-label="Petit Tonnerre Production">
+            <img src="assets/img/logo-pt-production.webp" alt="Logo Petit Tonnerre Production">
+        </a>
+    </header>
+
+    <!-- Section galerie complète -->
+    <section id="galerie" class="galerie-full">
+        <div class="galerie-bg" aria-hidden="true">
+            <img class="galerie-deco galerie-deco-1" src="assets/img/eclair.svg" alt="">
+            <img class="galerie-deco galerie-deco-2" src="assets/img/plume.svg" alt="">
+            <img class="galerie-deco galerie-deco-3" src="assets/img/nuage.svg" alt="">
+        </div>
+        <div class="galerie-content">
+            <div class="galerie-header">
+                <p class="galerie-eyebrow">Jeudi 28 mai 2026 <span class="galerie-eyebrow-sep">|</span> L'Arche, Angers</p>
+                <h1 class="galerie-title">Retour en images</h1>
+                <p class="galerie-subtitle">Premier Tonnerre — 43 photos signées de notre photographe.</p>
+            </div>
+            <div class="galerie-grid" id="galerie-grid"></div>
+        </div>
+    </section>
+
+    <!-- Footer minimal -->
+    <div class="footer-wrapper">
+        <span class="footer-rose-line" aria-hidden="true"></span>
+        <footer class="footer">
+            <div class="footer-content">
+                <h3 class="footer-title">Restez informés</h3>
+                <div class="footer-social">
+                    <a href="https://www.instagram.com/petit_tonnerre_production/" class="footer-social-link" aria-label="Instagram" target="_blank" rel="noopener noreferrer"><img src="assets/img/instagram.svg" alt="" class="footer-social-icon"></a>
+                    <a href="https://www.facebook.com/profile.php?id=61589135597420" class="footer-social-link" aria-label="Facebook" target="_blank" rel="noopener noreferrer"><img src="assets/img/facebook.svg" alt="" class="footer-social-icon"></a>
+                    <a href="https://www.linkedin.com/company/petittonnerreproduction" class="footer-social-link" aria-label="LinkedIn" target="_blank" rel="noopener noreferrer"><img src="assets/img/linkedin.svg" alt="" class="footer-social-icon"></a>
+                </div>
+                <a href="index.html#mentions-legales" class="footer-legal">Mentions légales</a>
+                <div class="footer-bottom">
+                    <img src="assets/img/eclair-rose.svg" alt="" class="footer-bolt" aria-hidden="true">
+                    <p class="footer-copyright">2026 – Petit Tonnerre Production</p>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <!-- Lightbox galerie -->
+    <div id="galerie-lightbox" class="galerie-lightbox" role="dialog" aria-modal="true" aria-label="Visualisation photo" hidden>
+        <button class="galerie-lightbox-close" type="button" aria-label="Fermer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <line x1="6" y1="6" x2="18" y2="18" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18" y1="6" x2="6" y2="18" stroke="#fff" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+        <button class="galerie-lightbox-nav galerie-lightbox-prev" type="button" aria-label="Photo précédente">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <polyline points="15 18 9 12 15 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <button class="galerie-lightbox-nav galerie-lightbox-next" type="button" aria-label="Photo suivante">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <polyline points="9 18 15 12 9 6" stroke="#fff" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </button>
+        <div class="galerie-lightbox-stage">
+            <img id="galerie-lightbox-img" src="" alt="">
+        </div>
+        <div class="galerie-lightbox-counter" id="galerie-lightbox-counter"></div>
+    </div>
+
+    <!-- Bouton flottant Don HelloAsso -->
+    <div class="button-wrapper ha-fab-wrapper">
+        <button type="button" id="openHaOverlay" class="btn hero-button ha-fab-btn" aria-label="Faire un don">Faire un don</button>
+    </div>
+
+    <!-- Modale HelloAsso -->
+    <div id="haWidgetModal" class="ha-modal" role="dialog" aria-modal="true" aria-label="Formulaire de don HelloAsso" hidden>
+        <button id="closeHaWidgetBtn" class="ha-modal-close" type="button" aria-label="Fermer">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                <line x1="6" y1="6" x2="18" y2="18" stroke="#2B187B" stroke-width="2" stroke-linecap="round"/>
+                <line x1="18" y1="6" x2="6" y2="18" stroke="#2B187B" stroke-width="2" stroke-linecap="round"/>
+            </svg>
+        </button>
+        <div class="ha-modal-content">
+            <iframe
+                id="haWidget"
+                src="https://www.helloasso.com/associations/petit-tonnerre-production/formulaires/1/widget?view=overlay"
+                allow="payment"
+                title="Formulaire de don – Petit Tonnerre Production"
+            ></iframe>
+        </div>
+    </div>
+
+    <script src="js/script.js?v=4"></script>
+</body>
+</html>

@@ -35,7 +35,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=24">
+    <link rel="stylesheet" href="css/style.css?v=28">
 </head>
 <body>
     <!-- Navigation -->
@@ -56,7 +56,7 @@
                 <img class="hero-logo" src="assets/img/logo-pt-production.webp" alt="Logo Petit Tonnerre Production">
                 <p class="hero-tagline">Association culturelle angevine <span class="hero-tagline-sep">|</span> Rendez-vous musicaux et familiaux</p>
             </div>
-            <div class="button-wrapper" data-scroll-to="#galerie">
+            <div class="button-wrapper" data-scroll-to="#agenda">
                 <button type="button" class="btn hero-button">Découvrir</button>
             </div>
         </div>
@@ -131,8 +131,77 @@
     </section>
     -->
 
-    <!-- Section Galerie : retour en images du Premier Tonnerre (28 mai 2026) -->
-    <section id="galerie">
+    <!-- Section Agenda : prochains rendez-vous -->
+    <section id="agenda">
+        <div class="agenda-bg" aria-hidden="true">
+            <img class="agenda-deco agenda-deco-1" src="assets/img/eclair.svg" alt="">
+            <img class="agenda-deco agenda-deco-2" src="assets/img/plume-blanche.svg" alt="">
+            <img class="agenda-deco agenda-deco-3" src="assets/img/eclair-ombre.svg" alt="">
+            <span class="agenda-star agenda-star-1"></span>
+            <span class="agenda-star agenda-star-2"></span>
+            <span class="agenda-star agenda-star-3"></span>
+            <span class="agenda-star agenda-star-4"></span>
+        </div>
+        <div class="agenda-content">
+            <div class="agenda-header">
+                <p class="agenda-eyebrow">Prochains rendez-vous <span class="agenda-eyebrow-sep">|</span> Été 2026</p>
+                <h2 class="agenda-title">Agenda</h2>
+                <p class="agenda-subtitle">Retrouvez Petit Tonnerre cet été sur ces évènements angevins.</p>
+            </div>
+            <div class="agenda-list">
+                <a class="agenda-event" href="https://lesfouleesdecouflant.sportsregions.fr/" target="_blank" rel="noopener noreferrer">
+                    <div class="agenda-event-date">
+                        <span class="agenda-event-dow">JEUDI</span>
+                        <span class="agenda-event-day">26</span>
+                        <span class="agenda-event-month">JUIN</span>
+                    </div>
+                    <div class="agenda-event-body">
+                        <h3 class="agenda-event-title">Les Foulées d'Écouflant</h3>
+                        <p class="agenda-event-desc">DJ Lossia &amp; animation écran</p>
+                        <span class="agenda-event-link" aria-hidden="true">
+                            En savoir plus
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                    </div>
+                </a>
+                <a class="agenda-event" href="https://www.terrabotanica.fr/les-envolees-vegetales/" target="_blank" rel="noopener noreferrer">
+                    <div class="agenda-event-date">
+                        <span class="agenda-event-dow">VENDREDI</span>
+                        <span class="agenda-event-day">24</span>
+                        <span class="agenda-event-month">JUILLET</span>
+                    </div>
+                    <div class="agenda-event-body">
+                        <h3 class="agenda-event-title">Les Envolées Végétales</h3>
+                        <p class="agenda-event-venue">Terra Botanica</p>
+                        <p class="agenda-event-desc">Village Petit Tonnerre, animations &amp; DJ set</p>
+                        <span class="agenda-event-link" aria-hidden="true">
+                            En savoir plus
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                    </div>
+                </a>
+                <a class="agenda-event" href="https://www.angers.fr/vivre-a-angers/sport/les-loisirs-sportifs/vital-ete-au-coeur/index.html" target="_blank" rel="noopener noreferrer">
+                    <div class="agenda-event-date">
+                        <span class="agenda-event-dow">DIMANCHE</span>
+                        <span class="agenda-event-day">23</span>
+                        <span class="agenda-event-month">AOÛT</span>
+                    </div>
+                    <div class="agenda-event-body">
+                        <h3 class="agenda-event-title">Vital Été</h3>
+                        <p class="agenda-event-venue">Ville d'Angers</p>
+                        <p class="agenda-event-desc">Stands, musique</p>
+                        <span class="agenda-event-link" aria-hidden="true">
+                            En savoir plus
+                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </span>
+                    </div>
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Section Galerie : teaser du Premier Tonnerre (28 mai 2026) -->
+    <section id="galerie" class="galerie-teaser">
         <div class="galerie-bg" aria-hidden="true">
             <img class="galerie-deco galerie-deco-1" src="assets/img/eclair.svg" alt="">
             <img class="galerie-deco galerie-deco-2" src="assets/img/plume.svg" alt="">
@@ -144,7 +213,15 @@
                 <h2 class="galerie-title">Retour en images</h2>
                 <p class="galerie-subtitle">Merci à toutes celles et ceux venus partager cette première soirée avec nous.</p>
             </div>
-            <div class="galerie-grid" id="galerie-grid"></div>
+            <div class="galerie-grid" id="galerie-grid" data-photo-count="8"></div>
+            <div class="galerie-cta">
+                <a href="galerie.html" class="galerie-cta-link">
+                    Voir toutes les photos
+                    <svg width="18" height="18" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M5 12h14M13 6l6 6-6 6" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                </a>
+            </div>
         </div>
     </section>
 
@@ -306,6 +383,6 @@
     </div>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script src="js/script.js"></script>
+    <script src="js/script.js?v=4"></script>
 </body>
 </html>

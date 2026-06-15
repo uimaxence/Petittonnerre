@@ -1,14 +1,21 @@
 // Galerie : Premier Tonnerre du 28 mai 2026
+// Format : [filename, height/width] — ratio pré-calculé pour le masonry "shortest column first"
 const GALERIE_PHOTOS = [
-    '_A7R3747.jpg', '_A7R3750.jpg', '_A7R3751.jpg', '_A7R3758.jpg', '_A7R3760.jpg',
-    '_A7R3764.jpg', '_A7R3765.jpg', '_A7R3768.jpg', '_A7R3774.jpg', '_A7R3778.jpg',
-    '_A7R3782.jpg', '_A7R3783.jpg', '_A7R3785.jpg', '_A7R3795.jpg', '_A7R3798.jpg',
-    '_A7R3809.jpg', '_A7R3811.jpg', '_A7R3815.jpg', '_A7R3819.jpg', '_A7R3820.jpg',
-    '_A7R3826.jpg', '_A7R3833.jpg', '_A7R3834.jpg', '_A7R3839.jpg', '_A7R3843.jpg',
-    '_A7R3850.jpg', '_A7R3853.jpg', '_A7R3857.jpg', '_A7R3859.jpg', '_A7R3861.jpg',
-    '_A7R3863.jpg', '_A7R3867.jpg', '_A7R3869.jpg', '_A7R3872.jpg', '_A7R3875.jpg',
-    '_A7R3876.jpg', '_A7R3879.jpg', '_A7R3882.jpg', '_A7R3886.jpg', '_A7R3888.jpg',
-    '_A7R3891.jpg', '_A7R3893.jpg', '_A7R3897.jpg'
+    ['_A7R3747.jpg', 1.499], ['_A7R3750.jpg', 1.500], ['_A7R3751.jpg', 0.667],
+    ['_A7R3758.jpg', 0.667], ['_A7R3760.jpg', 1.500], ['_A7R3764.jpg', 0.667],
+    ['_A7R3765.jpg', 0.667], ['_A7R3768.jpg', 1.499], ['_A7R3774.jpg', 1.499],
+    ['_A7R3778.jpg', 0.667], ['_A7R3782.jpg', 1.499], ['_A7R3783.jpg', 0.667],
+    ['_A7R3785.jpg', 1.499], ['_A7R3795.jpg', 1.499], ['_A7R3798.jpg', 0.667],
+    ['_A7R3809.jpg', 0.667], ['_A7R3811.jpg', 1.500], ['_A7R3815.jpg', 0.667],
+    ['_A7R3819.jpg', 0.667], ['_A7R3820.jpg', 0.667], ['_A7R3826.jpg', 0.667],
+    ['_A7R3833.jpg', 0.666], ['_A7R3834.jpg', 0.667], ['_A7R3839.jpg', 0.667],
+    ['_A7R3843.jpg', 1.499], ['_A7R3850.jpg', 1.499], ['_A7R3853.jpg', 0.667],
+    ['_A7R3857.jpg', 1.500], ['_A7R3859.jpg', 0.666], ['_A7R3861.jpg', 1.499],
+    ['_A7R3863.jpg', 0.666], ['_A7R3867.jpg', 1.499], ['_A7R3869.jpg', 1.499],
+    ['_A7R3872.jpg', 0.667], ['_A7R3875.jpg', 0.666], ['_A7R3876.jpg', 0.666],
+    ['_A7R3879.jpg', 0.667], ['_A7R3882.jpg', 0.667], ['_A7R3886.jpg', 0.666],
+    ['_A7R3888.jpg', 1.500], ['_A7R3891.jpg', 0.666], ['_A7R3893.jpg', 0.667],
+    ['_A7R3897.jpg', 0.667]
 ];
 const GALERIE_DIR = 'assets/img/galerie/';
 
@@ -25,12 +32,24 @@ document.addEventListener('DOMContentLoaded', function() {
 
     let currentIndex = 0;
 
-    // Sur mobile (< 768px), on ne montre qu'un échantillon réparti (~15 photos)
-    // pour éviter un scroll trop long. Le lightbox navigue uniquement parmi ces photos.
-    const isMobile = window.matchMedia('(max-width: 767px)').matches;
-    const photos = isMobile
-        ? GALERIE_PHOTOS.filter((_, i) => i % 3 === 0)
-        : GALERIE_PHOTOS;
+    // Compat : extrait juste le filename quand on n'a pas besoin du ratio
+    const photoFile = (p) => Array.isArray(p) ? p[0] : p;
+    const photoRatio = (p) => Array.isArray(p) ? p[1] : 1.5;
+
+    // Sélection des photos affichées :
+    // - data-photo-count="N" sur #galerie-grid → N photos réparties uniformément (teaser home)
+    // - Pas d'attribut → toutes les photos (page galerie dédiée)
+    const limitAttr = parseInt(grid.dataset.photoCount, 10);
+    let photos;
+    if (limitAttr > 0 && limitAttr < GALERIE_PHOTOS.length) {
+        const step = GALERIE_PHOTOS.length / limitAttr;
+        photos = [];
+        for (let i = 0; i < limitAttr; i++) {
+            photos.push(GALERIE_PHOTOS[Math.floor(i * step)]);
+        }
+    } else {
+        photos = GALERIE_PHOTOS;
+    }
 
     // Détermine le nombre de colonnes selon viewport
     function getColCount() {
@@ -41,31 +60,43 @@ document.addEventListener('DOMContentLoaded', function() {
         return 4;
     }
 
-    // Rendu masonry : colonnes flex + distribution round-robin (équilibrage visuel fiable
-    // vs. column-count CSS qui empilait les portraits dans une seule colonne en mobile)
+    // Rendu masonry : sort par ratio desc, puis place chaque photo dans la colonne
+    // la plus courte. Donne un équilibrage quasi-parfait des hauteurs de colonnes.
     function renderGrid() {
         grid.innerHTML = '';
         const cols = getColCount();
         const columns = [];
+        const heights = new Array(cols).fill(0);
         for (let c = 0; c < cols; c++) {
             const col = document.createElement('div');
             col.className = 'galerie-col';
             columns.push(col);
             grid.appendChild(col);
         }
-        photos.forEach((file, i) => {
+        // Indexes triés par ratio décroissant (portraits avant landscapes)
+        const sortedIdx = photos.map((_, i) => i)
+            .sort((a, b) => photoRatio(photos[b]) - photoRatio(photos[a]));
+        sortedIdx.forEach((origIdx) => {
+            const entry = photos[origIdx];
+            const file = photoFile(entry);
+            const ratio = photoRatio(entry);
+            let shortest = 0;
+            for (let c = 1; c < cols; c++) {
+                if (heights[c] < heights[shortest]) shortest = c;
+            }
             const btn = document.createElement('button');
             btn.type = 'button';
             btn.className = 'galerie-item';
-            btn.setAttribute('aria-label', `Photo ${i + 1} sur ${photos.length}`);
-            btn.dataset.index = i;
+            btn.setAttribute('aria-label', `Photo ${origIdx + 1} sur ${photos.length}`);
+            btn.dataset.index = origIdx;
             const img = document.createElement('img');
             img.src = GALERIE_DIR + file;
-            img.alt = `Premier Tonnerre — 28 mai 2026 — photo ${i + 1}`;
+            img.alt = `Premier Tonnerre — 28 mai 2026 — photo ${origIdx + 1}`;
             img.loading = 'lazy';
             img.decoding = 'async';
             btn.appendChild(img);
-            columns[i % cols].appendChild(btn);
+            columns[shortest].appendChild(btn);
+            heights[shortest] += ratio;
         });
     }
     renderGrid();
@@ -96,7 +127,7 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateLightbox() {
-        const file = photos[currentIndex];
+        const file = photoFile(photos[currentIndex]);
         imgEl.src = GALERIE_DIR + file;
         imgEl.alt = `Premier Tonnerre — 28 mai 2026 — photo ${currentIndex + 1}`;
         counter.textContent = `${currentIndex + 1} / ${photos.length}`;
