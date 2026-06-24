@@ -1916,53 +1916,133 @@ h2 {
     z-index: 2;
 }
 
-.galerie-teaser {
-    padding-bottom: 100px !important;
+/* Section Retour en images : vidéo en bg + overlay + CTA */
+#retour-images {
+    position: relative;
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    overflow: hidden;
+    background-color: var(--color-dark);
+    padding: 80px 24px;
 }
 
-/* CTA "Voir toutes les photos" sous le teaser */
-.galerie-cta {
-    margin-top: 48px;
+.retour-video {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: 0;
+    pointer-events: none;
+}
+
+.retour-overlay {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    background:
+        linear-gradient(180deg, rgba(19, 11, 50, 0.45) 0%, rgba(19, 11, 50, 0.65) 100%),
+        radial-gradient(ellipse at center, transparent 0%, rgba(19, 11, 50, 0.35) 100%);
+}
+
+.retour-content {
+    position: relative;
+    z-index: 2;
+    max-width: 700px;
     text-align: center;
+    color: #fff;
 }
 
-.galerie-cta-link {
+.retour-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--color-blue);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.retour-eyebrow-sep {
+    color: var(--color-rose);
+    margin: 0 8px;
+}
+
+.retour-title {
+    font-family: 'TBJ Fluke', sans-serif;
+    font-weight: bold;
+    font-size: 78px;
+    line-height: 1;
+    letter-spacing: 1px;
+    margin-bottom: 20px;
+    text-shadow: 0 4px 24px rgba(0, 0, 0, 0.6);
+}
+
+.retour-subtitle {
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    color: rgba(255, 255, 255, 0.92);
+    line-height: 1.5;
+    margin: 0 auto 36px;
+    max-width: 540px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+}
+
+.retour-cta {
     display: inline-flex;
     align-items: center;
     gap: 10px;
-    padding: 14px 28px;
+    padding: 14px 30px;
     font-family: 'Poppins', sans-serif;
     font-size: 15px;
     font-weight: 600;
     letter-spacing: 1px;
     color: #fff;
-    background: transparent;
+    background: rgba(253, 126, 219, 0.15);
     border: 2px solid var(--color-rose);
     border-radius: 999px;
     text-decoration: none;
+    backdrop-filter: blur(4px);
+    -webkit-backdrop-filter: blur(4px);
     transition: background-color 0.25s ease, color 0.25s ease, gap 0.25s ease, transform 0.25s ease;
 }
 
-.galerie-cta-link:hover {
+.retour-cta:hover {
     background: var(--color-rose);
     color: var(--color-dark-blue);
     gap: 14px;
     transform: translateY(-2px);
 }
 
-.galerie-cta-link:focus-visible {
+.retour-cta:focus-visible {
     outline: 2px solid var(--color-blue);
     outline-offset: 3px;
 }
 
 @media (max-width: 768px) {
-    .galerie-teaser {
-        padding-bottom: 70px !important;
+    #retour-images {
+        min-height: 60vh;
+        padding: 60px 20px;
     }
-    .galerie-cta { margin-top: 36px; }
-    .galerie-cta-link {
+    .retour-title { font-size: 52px; }
+    .retour-subtitle { font-size: 15px; margin-bottom: 28px; }
+    .retour-cta {
         font-size: 14px;
         padding: 12px 24px;
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .retour-video { display: none; }
+    #retour-images {
+        background-image: linear-gradient(180deg, rgba(19, 11, 50, 0.45) 0%, rgba(19, 11, 50, 0.65) 100%), url('../assets/video/teaser-poster.jpg');
+        background-size: cover;
+        background-position: center;
     }
 }
 
