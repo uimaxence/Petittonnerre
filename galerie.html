@@ -34,7 +34,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=32">
+    <link rel="stylesheet" href="css/style.css?v=33">
 </head>
 <body class="page-galerie">
     <!-- Header minimal : logo + retour accueil -->
@@ -63,7 +63,19 @@
                 <h1 class="galerie-title">Retour en images</h1>
                 <p class="galerie-subtitle">Premier Tonnerre — 43 photos signées de notre photographe.</p>
             </div>
-            <div class="galerie-grid" id="galerie-grid" data-include-video="true"></div>
+            <div class="galerie-video-featured">
+                <video id="featured-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/teaser-poster.jpg">
+                    <source src="assets/video/teaser.mp4" type="video/mp4">
+                </video>
+                <span class="galerie-video-badge">After movie</span>
+                <button type="button" class="galerie-video-fs" aria-label="Lecture plein écran avec son">
+                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                        <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                    </svg>
+                    <span>Plein écran</span>
+                </button>
+            </div>
+            <div class="galerie-grid" id="galerie-grid"></div>
         </div>
     </section>
 
@@ -134,6 +146,6 @@
         </div>
     </div>
 
-    <script src="js/script.js?v=5"></script>
+    <script src="js/script.js?v=6"></script>
 </body>
 </html>

@@ -1,3 +1,50 @@
+// Vidéo featured sur galerie.html : plein écran + son au clic
+document.addEventListener('DOMContentLoaded', function() {
+    const featured = document.getElementById('featured-video');
+    const fsBtn = document.querySelector('.galerie-video-fs');
+    if (!featured) return;
+
+    function inFullscreen() {
+        return !!(document.fullscreenElement || document.webkitFullscreenElement);
+    }
+
+    function enterFullscreen() {
+        const fn = featured.requestFullscreen
+            || featured.webkitRequestFullscreen
+            || featured.webkitEnterFullscreen;
+        if (!fn) return;
+        try {
+            const result = fn.call(featured);
+            if (result && typeof result.catch === 'function') result.catch(function() {});
+        } catch (e) { /* iOS Safari */ }
+        featured.muted = false;
+        featured.controls = true;
+        featured.currentTime = 0;
+        featured.play().catch(function() {});
+    }
+
+    function exitFullscreenCleanup() {
+        featured.muted = true;
+        featured.controls = false;
+    }
+
+    featured.addEventListener('click', function(e) {
+        if (inFullscreen()) return;
+        e.preventDefault();
+        enterFullscreen();
+    });
+    if (fsBtn) fsBtn.addEventListener('click', enterFullscreen);
+
+    document.addEventListener('fullscreenchange', function() {
+        if (!inFullscreen()) exitFullscreenCleanup();
+    });
+    document.addEventListener('webkitfullscreenchange', function() {
+        if (!inFullscreen()) exitFullscreenCleanup();
+    });
+    // iOS : la vidéo gère son propre fullscreen, on récupère via webkitendfullscreen
+    featured.addEventListener('webkitendfullscreen', exitFullscreenCleanup);
+});
+
 // Galerie : Premier Tonnerre du 28 mai 2026
 // Format : [filename, height/width] — ratio pré-calculé pour le masonry "shortest column first"
 const GALERIE_PHOTOS = [
@@ -60,31 +107,6 @@ document.addEventListener('DOMContentLoaded', function() {
         return 4;
     }
 
-    const includeVideo = grid.dataset.includeVideo === 'true';
-
-    function createVideoItem() {
-        const wrap = document.createElement('div');
-        wrap.className = 'galerie-item galerie-video-item';
-        wrap.setAttribute('aria-label', 'After movie Premier Tonnerre');
-        const video = document.createElement('video');
-        video.autoplay = true;
-        video.muted = true;
-        video.loop = true;
-        video.playsInline = true;
-        video.preload = 'metadata';
-        video.poster = 'assets/video/teaser-poster.jpg';
-        const source = document.createElement('source');
-        source.src = 'assets/video/teaser.mp4';
-        source.type = 'video/mp4';
-        video.appendChild(source);
-        wrap.appendChild(video);
-        const badge = document.createElement('span');
-        badge.className = 'galerie-video-badge';
-        badge.textContent = 'After movie';
-        wrap.appendChild(badge);
-        return wrap;
-    }
-
     // Rendu masonry : sort par ratio desc, puis place chaque photo dans la colonne
     // la plus courte. Donne un équilibrage quasi-parfait des hauteurs de colonnes.
     function renderGrid() {
@@ -123,18 +145,6 @@ document.addEventListener('DOMContentLoaded', function() {
             columns[shortest].appendChild(btn);
             heights[shortest] += ratio;
         });
-
-        // Vidéo after movie : insérée en position 2 de la 2e colonne (visible en 2e ligne)
-        if (includeVideo) {
-            const videoItem = createVideoItem();
-            const targetCol = columns[Math.min(1, cols - 1)];
-            const insertAt = Math.min(1, targetCol.children.length);
-            if (targetCol.children[insertAt]) {
-                targetCol.insertBefore(videoItem, targetCol.children[insertAt]);
-            } else {
-                targetCol.appendChild(videoItem);
-            }
-        }
     }
     renderGrid();
 
@@ -182,7 +192,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     grid.addEventListener('click', function(e) {
         const item = e.target.closest('.galerie-item');
-        if (!item || item.classList.contains('galerie-video-item')) return;
+        if (!item) return;
         openLightbox(parseInt(item.dataset.index, 10));
     });
 
