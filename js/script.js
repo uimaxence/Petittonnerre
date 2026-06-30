@@ -60,6 +60,31 @@ document.addEventListener('DOMContentLoaded', function() {
         return 4;
     }
 
+    const includeVideo = grid.dataset.includeVideo === 'true';
+
+    function createVideoItem() {
+        const wrap = document.createElement('div');
+        wrap.className = 'galerie-item galerie-video-item';
+        wrap.setAttribute('aria-label', 'After movie Premier Tonnerre');
+        const video = document.createElement('video');
+        video.autoplay = true;
+        video.muted = true;
+        video.loop = true;
+        video.playsInline = true;
+        video.preload = 'metadata';
+        video.poster = 'assets/video/teaser-poster.jpg';
+        const source = document.createElement('source');
+        source.src = 'assets/video/teaser.mp4';
+        source.type = 'video/mp4';
+        video.appendChild(source);
+        wrap.appendChild(video);
+        const badge = document.createElement('span');
+        badge.className = 'galerie-video-badge';
+        badge.textContent = 'After movie';
+        wrap.appendChild(badge);
+        return wrap;
+    }
+
     // Rendu masonry : sort par ratio desc, puis place chaque photo dans la colonne
     // la plus courte. Donne un équilibrage quasi-parfait des hauteurs de colonnes.
     function renderGrid() {
@@ -98,6 +123,18 @@ document.addEventListener('DOMContentLoaded', function() {
             columns[shortest].appendChild(btn);
             heights[shortest] += ratio;
         });
+
+        // Vidéo after movie : insérée en position 2 de la 2e colonne (visible en 2e ligne)
+        if (includeVideo) {
+            const videoItem = createVideoItem();
+            const targetCol = columns[Math.min(1, cols - 1)];
+            const insertAt = Math.min(1, targetCol.children.length);
+            if (targetCol.children[insertAt]) {
+                targetCol.insertBefore(videoItem, targetCol.children[insertAt]);
+            } else {
+                targetCol.appendChild(videoItem);
+            }
+        }
     }
     renderGrid();
 
@@ -145,7 +182,7 @@ document.addEventListener('DOMContentLoaded', function() {
 
     grid.addEventListener('click', function(e) {
         const item = e.target.closest('.galerie-item');
-        if (!item) return;
+        if (!item || item.classList.contains('galerie-video-item')) return;
         openLightbox(parseInt(item.dataset.index, 10));
     });
 

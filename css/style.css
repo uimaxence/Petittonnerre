@@ -1745,6 +1745,16 @@ h2 {
     margin: 0;
 }
 
+.agenda-event-slogan {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    font-style: italic;
+    font-weight: 400;
+    color: var(--color-rose);
+    line-height: 1.4;
+    margin: 4px 0 2px;
+}
+
 .agenda-event-venue {
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
@@ -1993,6 +2003,50 @@ h2 {
     text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
+.retour-photos {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    gap: 12px;
+    margin: 0 0 36px;
+    width: 100%;
+    max-width: 760px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.retour-photo {
+    display: block;
+    aspect-ratio: 1 / 1;
+    overflow: hidden;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.12);
+    box-shadow: 0 4px 14px rgba(0, 0, 0, 0.4);
+    transition: transform 0.25s ease, border-color 0.25s ease;
+    cursor: pointer;
+}
+
+.retour-photo:hover {
+    transform: translateY(-3px);
+    border-color: var(--color-rose);
+}
+
+.retour-photo:focus-visible {
+    outline: 2px solid var(--color-blue);
+    outline-offset: 2px;
+}
+
+.retour-photo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: transform 0.4s ease;
+}
+
+.retour-photo:hover img {
+    transform: scale(1.05);
+}
+
 .retour-cta {
     display: inline-flex;
     align-items: center;
@@ -2026,14 +2080,26 @@ h2 {
 
 @media (max-width: 768px) {
     #retour-images {
-        min-height: 60vh;
-        padding: 60px 20px;
+        min-height: auto;
+        padding: 60px 20px 70px;
     }
     .retour-title { font-size: 52px; }
     .retour-subtitle { font-size: 15px; margin-bottom: 28px; }
+    .retour-photos {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 6px;
+        margin-bottom: 28px;
+    }
     .retour-cta {
         font-size: 14px;
         padding: 12px 24px;
+    }
+}
+
+@media (max-width: 480px) {
+    .retour-photos {
+        grid-template-columns: repeat(5, 1fr);
+        gap: 4px;
     }
 }
 
@@ -2182,6 +2248,43 @@ h2 {
 
 .galerie-item:hover img {
     transform: scale(1.02);
+}
+
+/* Carte vidéo dans la grille galerie : after movie */
+.galerie-video-item {
+    cursor: default;
+    border: 2px solid var(--color-rose);
+}
+
+.galerie-video-item video {
+    display: block;
+    width: 100%;
+    height: auto;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    background: var(--color-dark);
+}
+
+.galerie-video-item:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(253, 126, 219, 0.35);
+}
+
+.galerie-video-badge {
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    padding: 5px 12px;
+    background: var(--color-rose);
+    color: var(--color-dark-blue);
+    font-family: 'Poppins', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    border-radius: 999px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+    pointer-events: none;
 }
 
 @media (max-width: 768px) {
