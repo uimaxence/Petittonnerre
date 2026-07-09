@@ -1831,13 +1831,16 @@ h2 {
     align-items: stretch;
 }
 
+/* Affiche façon collage : découpe irrégulière (clip-path sur l'img, ombre sur le wrapper
+   car un clip-path sur le même élément couperait l'ombre — même astuce que .button-wrapper) */
 .agenda-affiche {
     display: block;
-    border-radius: 14px;
-    overflow: hidden;
-    border: 1px solid rgba(253, 126, 219, 0.25);
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
-    transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    transform: rotate(-0.7deg);
+    -webkit-filter: drop-shadow(7px 7px 0 rgba(1, 255, 255, 0.85))
+            drop-shadow(0 10px 22px rgba(0, 0, 0, 0.35));
+    filter: drop-shadow(7px 7px 0 rgba(1, 255, 255, 0.85))
+            drop-shadow(0 10px 22px rgba(0, 0, 0, 0.35));
+    transition: transform 0.25s ease, filter 0.25s ease;
 }
 
 .agenda-affiche img {
@@ -1845,12 +1848,16 @@ h2 {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    -webkit-clip-path: polygon(1% 0.7%, 99.3% 0, 100% 99.2%, 0 100%);
+    clip-path: polygon(1% 0.7%, 99.3% 0, 100% 99.2%, 0 100%);
 }
 
 .agenda-affiche:hover {
-    transform: translateY(-3px);
-    border-color: rgba(1, 255, 255, 0.5);
-    box-shadow: 0 14px 36px rgba(0, 0, 0, 0.45);
+    transform: rotate(-0.7deg) translateY(-4px);
+    -webkit-filter: drop-shadow(8px 9px 0 rgba(253, 126, 219, 0.85))
+            drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
+    filter: drop-shadow(8px 9px 0 rgba(253, 126, 219, 0.85))
+            drop-shadow(0 14px 28px rgba(0, 0, 0, 0.45));
 }
 
 .agenda-affiche:focus-visible {
@@ -1858,14 +1865,14 @@ h2 {
     outline-offset: 3px;
 }
 
-/* Panneau programme : reprend la DA de l'affiche (fond violet, grille, bandeaux alternés) */
+/* Panneau programme : reprend la DA de l'affiche (fond violet, grille, bandeaux alternés),
+   découpe légèrement cassée plutôt que rectangle parfait */
 .agenda-prog {
     position: relative;
     background: linear-gradient(170deg, var(--color-dark-blue) 0%, #431d8a 55%, #7a2e93 100%);
-    border: 1px solid rgba(253, 126, 219, 0.25);
-    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.35);
+    -webkit-clip-path: polygon(0 0.5%, 99.4% 0, 100% 99.3%, 0.5% 100%);
+    clip-path: polygon(0 0.5%, 99.4% 0, 100% 99.3%, 0.5% 100%);
 }
 
 .agenda-prog-grid {
@@ -1928,14 +1935,36 @@ h2 {
     align-items: center;
     gap: 14px;
     padding: 10px 18px;
-    border-radius: 8px;
     text-align: left;
 }
+
+/* Bandeaux "coupés à la main" : quadrilatères irréguliers + micro-rotation alternée */
+.agenda-prog-item:nth-child(4n+1) {
+    -webkit-clip-path: polygon(0 6%, 99.6% 0, 100% 94%, 0.4% 100%);
+    clip-path: polygon(0 6%, 99.6% 0, 100% 94%, 0.4% 100%);
+}
+
+.agenda-prog-item:nth-child(4n+2) {
+    -webkit-clip-path: polygon(0.5% 0, 100% 8%, 99.5% 100%, 0 92%);
+    clip-path: polygon(0.5% 0, 100% 8%, 99.5% 100%, 0 92%);
+}
+
+.agenda-prog-item:nth-child(4n+3) {
+    -webkit-clip-path: polygon(0 0, 99.4% 5%, 100% 100%, 0.6% 95%);
+    clip-path: polygon(0 0, 99.4% 5%, 100% 100%, 0.6% 95%);
+}
+
+.agenda-prog-item:nth-child(4n) {
+    -webkit-clip-path: polygon(0.3% 5%, 99.7% 0, 99.4% 95%, 0 100%);
+    clip-path: polygon(0.3% 5%, 99.7% 0, 99.4% 95%, 0 100%);
+}
+
+.agenda-prog-item:nth-child(odd) { transform: rotate(-0.35deg); }
+.agenda-prog-item:nth-child(even) { transform: rotate(0.3deg); }
 
 /* Bandeaux alternés sombre / cyan, comme sur l'affiche programme */
 .agenda-prog-item:nth-child(odd) {
     background: var(--color-dark);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.3);
 }
 
 .agenda-prog-item:nth-child(odd) .agenda-prog-time { color: var(--color-rose); }
@@ -1944,7 +1973,6 @@ h2 {
 
 .agenda-prog-item:nth-child(even) {
     background: var(--color-blue);
-    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.25);
 }
 
 .agenda-prog-item:nth-child(even) .agenda-prog-time,
