@@ -1495,14 +1495,28 @@ h2 {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
 }
 
+.footer-nav {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px 22px;
+    margin-bottom: 25px;
+}
+
 .footer-legal {
     font-family: 'Poppins', sans-serif;
     font-size: 14px;
     color: var(--color-dark);
     text-decoration: underline;
-    margin-bottom: 25px;
     display: inline-block;
     transition: opacity 0.2s ease;
+}
+
+.footer-nav .footer-legal {
+    margin-bottom: 0;
+}
+
+.footer-legal-strong {
+    font-weight: 600;
 }
 
 .footer-legal:hover {
@@ -2924,7 +2938,7 @@ a.btn.hero-button {
     grid-template-columns: repeat(3, 1fr);
     gap: 20px;
     max-width: 1100px;
-    margin: 0 auto 90px;
+    margin: 0 auto;
 }
 
 /* Cartes : ombre nette décalée sur le wrapper, découpe cassée sur l'inner */
@@ -3044,7 +3058,6 @@ a.btn.hero-button {
     .boutique-perks {
         grid-template-columns: 1fr;
         gap: 14px;
-        margin-bottom: 64px;
     }
 }
 
