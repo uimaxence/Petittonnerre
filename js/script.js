@@ -10,6 +10,60 @@ document.addEventListener('DOMContentLoaded', function() {
     window.addEventListener('load', reserve);
 });
 
+// Carousel merch (page boutique)
+document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('[data-carousel]').forEach(function(carousel) {
+        const track = carousel.querySelector('.merch-carousel-track');
+        const slides = Array.prototype.slice.call(carousel.querySelectorAll('.merch-carousel-slide'));
+        const prev = carousel.querySelector('.merch-carousel-prev');
+        const next = carousel.querySelector('.merch-carousel-next');
+        const dotsWrap = carousel.querySelector('.merch-carousel-dots');
+        if (!track || slides.length === 0) return;
+
+        let index = 0;
+        let timer = null;
+
+        const dots = slides.map(function(_, i) {
+            const d = document.createElement('button');
+            d.type = 'button';
+            d.className = 'merch-carousel-dot' + (i === 0 ? ' active' : '');
+            d.setAttribute('aria-label', 'Aller à la photo ' + (i + 1));
+            d.addEventListener('click', function() { goTo(i); restart(); });
+            dotsWrap.appendChild(d);
+            return d;
+        });
+
+        function update() {
+            dots.forEach(function(d, i) { d.classList.toggle('active', i === index); });
+        }
+        function goTo(i) {
+            index = (i + slides.length) % slides.length;
+            track.scrollTo({ left: index * track.clientWidth, behavior: 'smooth' });
+            update();
+        }
+
+        let scrollTimer = null;
+        track.addEventListener('scroll', function() {
+            if (scrollTimer) clearTimeout(scrollTimer);
+            scrollTimer = setTimeout(function() {
+                index = Math.round(track.scrollLeft / track.clientWidth);
+                update();
+            }, 90);
+        });
+
+        if (prev) prev.addEventListener('click', function() { goTo(index - 1); restart(); });
+        if (next) next.addEventListener('click', function() { goTo(index + 1); restart(); });
+
+        function start() { timer = setInterval(function() { goTo(index + 1); }, 4500); }
+        function stop() { if (timer) { clearInterval(timer); timer = null; } }
+        function restart() { stop(); start(); }
+
+        carousel.addEventListener('mouseenter', stop);
+        carousel.addEventListener('mouseleave', start);
+        start();
+    });
+});
+
 // Vidéo featured sur galerie.html : plein écran + son au clic
 document.addEventListener('DOMContentLoaded', function() {
     const featured = document.getElementById('featured-video');

@@ -1066,6 +1066,117 @@ h2 {
     }
 }
 
+/* #region Section Merch (home) — dans la bande rose #valeur */
+.merch-home-inner {
+    position: relative;
+    z-index: 2;
+    max-width: 1080px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 0.82fr 1.18fr;
+    gap: 50px;
+    align-items: center;
+}
+
+/* Image : bords cassés (clip-path) + ombre nette, comme la boutique */
+.merch-home-media {
+    position: relative;
+    min-width: 0;
+    aspect-ratio: 4 / 5;
+    transform: rotate(-0.8deg);
+    -webkit-filter: drop-shadow(8px 8px 0 var(--color-dark-blue));
+    filter: drop-shadow(8px 8px 0 var(--color-dark-blue));
+}
+
+.merch-home-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    -webkit-clip-path: polygon(1% 0.7%, 99.3% 0, 100% 99.2%, 0 100%);
+    clip-path: polygon(1% 0.7%, 99.3% 0, 100% 99.2%, 0 100%);
+}
+
+.merch-home-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: #fff;
+    background: var(--color-dark-blue);
+    padding: 8px 15px;
+    -webkit-clip-path: polygon(3% 6%, 97% 0, 100% 88%, 2% 100%);
+    clip-path: polygon(3% 6%, 97% 0, 100% 88%, 2% 100%);
+}
+
+.merch-home-text {
+    min-width: 0;
+}
+
+.merch-home-eyebrow {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-dark-blue);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 14px;
+}
+
+.merch-home-eyebrow-sep {
+    color: #fff;
+    margin: 0 4px;
+}
+
+.merch-home-title {
+    font-family: 'TBJ Fluke', sans-serif;
+    font-weight: bold;
+    font-size: 52px;
+    line-height: 1;
+    color: var(--color-dark);
+    margin-bottom: 20px;
+}
+
+.merch-home-desc {
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: var(--color-dark-blue);
+    max-width: 520px;
+    margin-bottom: 30px;
+}
+
+/* Variante bouton lisible sur fond rose : dark-blue rempli + texte blanc */
+.btn.hero-button.hero-button--merch {
+    background-color: var(--color-dark-blue);
+    color: #fff;
+    display: inline-block;
+    text-decoration: none;
+}
+
+@media (max-width: 860px) {
+    .merch-home-inner {
+        grid-template-columns: 1fr;
+        gap: 30px;
+        max-width: 460px;
+        text-align: center;
+    }
+    .merch-home-media {
+        order: -1;
+        aspect-ratio: 16 / 11;
+        max-height: 340px;
+    }
+    .merch-home-title { font-size: 40px; }
+    .merch-home-desc { margin-left: auto; margin-right: auto; }
+}
+/* #endregion */
+
 
 /* Section Partenaires - overflow: visible pour que les SVG décoratifs dépassent en haut/bas (scroll horizontal géré par html/body) */
 #partenaires {
@@ -2930,6 +3041,97 @@ a.btn.hero-button {
     padding: 8px 15px;
     -webkit-clip-path: polygon(3% 6%, 97% 0, 100% 88%, 2% 100%);
     clip-path: polygon(3% 6%, 97% 0, 100% 88%, 2% 100%);
+}
+
+/* ---- Carousel merch (dans le frame hero) ---- */
+.merch-carousel {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+    background: var(--color-dark);
+    -webkit-clip-path: polygon(1% 0.7%, 99.3% 0, 100% 99.2%, 0 100%);
+    clip-path: polygon(1% 0.7%, 99.3% 0, 100% 99.2%, 0 100%);
+}
+
+.merch-carousel-track {
+    display: flex;
+    height: 100%;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+}
+
+.merch-carousel-track::-webkit-scrollbar { display: none; }
+
+.merch-carousel-slide {
+    flex: 0 0 100%;
+    width: 100%;
+    height: 100%;
+    scroll-snap-align: center;
+}
+
+/* Annule le clip-path générique .boutique-hero-media img : ici c'est le carousel qui porte la découpe */
+.merch-carousel-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    -webkit-clip-path: none;
+    clip-path: none;
+}
+
+.merch-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 40px;
+    height: 40px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #fff;
+    background: rgba(19, 11, 50, 0.5);
+    border: none;
+    cursor: pointer;
+    z-index: 3;
+    transition: background 0.2s ease;
+    -webkit-clip-path: polygon(8% 4%, 96% 0, 100% 92%, 3% 100%);
+    clip-path: polygon(8% 4%, 96% 0, 100% 92%, 3% 100%);
+}
+
+.merch-carousel-btn:hover { background: var(--color-dark-blue); }
+.merch-carousel-prev { left: 12px; }
+.merch-carousel-next { right: 12px; }
+
+.merch-carousel-dots {
+    position: absolute;
+    bottom: 14px;
+    left: 0;
+    right: 0;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    z-index: 3;
+}
+
+.merch-carousel-dot {
+    width: 9px;
+    height: 9px;
+    padding: 0;
+    border: none;
+    cursor: pointer;
+    background: rgba(255, 255, 255, 0.55);
+    transform: rotate(45deg);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.merch-carousel-dot.active {
+    background: var(--color-blue);
+    transform: rotate(45deg) scale(1.25);
 }
 
 /* ---- Arguments ---- */

@@ -34,7 +34,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=35">
+    <link rel="stylesheet" href="css/style.css?v=36">
 </head>
 <body class="page-galerie">
     <!-- Header minimal : logo + retour accueil -->
@@ -64,11 +64,27 @@
                 <div class="boutique-hero-text">
                     <p class="galerie-eyebrow">Merch officiel <span class="galerie-eyebrow-sep">|</span> Drop #1 · Juillet 2026</p>
                     <h1 class="boutique-hero-title">Porte le Tonnerre.</h1>
-                    <p class="boutique-hero-sub">Notre tout premier tee-shirt débarque. Petite série, floqué maison — et chaque euro repart direct dans l'asso. Tu le portes, on avance. ⚡</p>
+                    <p class="boutique-hero-sub">Notre tout premier tee-shirt débarque. Petite série, floqué maison, et chaque euro repart direct dans l'asso. Tu le portes, on avance. ⚡</p>
                     <a class="btn hero-button boutique-hero-cta" href="#boutique-shop">Voir le tee-shirt</a>
                 </div>
                 <div class="boutique-hero-media">
-                    <img src="assets/img/merch-tshirts.webp" alt="Les tee-shirts officiels Petit Tonnerre Production, noir et blanc, sur un portant" width="1200" height="1801">
+                    <div class="merch-carousel" data-carousel>
+                        <div class="merch-carousel-track">
+                            <div class="merch-carousel-slide"><img src="assets/img/merch/tshirt-1.webp" alt="Tee-shirts Petit Tonnerre noir et blanc, face" width="1000" height="1500"></div>
+                            <div class="merch-carousel-slide"><img src="assets/img/merch/tshirt-5.webp" alt="Tee-shirt Petit Tonnerre blanc, face" width="1000" height="1500" loading="lazy"></div>
+                            <div class="merch-carousel-slide"><img src="assets/img/merch/tshirt-7.webp" alt="Tee-shirt Petit Tonnerre noir, face" width="1000" height="1500" loading="lazy"></div>
+                            <div class="merch-carousel-slide"><img src="assets/img/merch/tshirt-3.webp" alt="Tee-shirts Petit Tonnerre, dos avec logo" width="1000" height="1500" loading="lazy"></div>
+                            <div class="merch-carousel-slide"><img src="assets/img/merch/tshirt-6.webp" alt="Tee-shirt Petit Tonnerre blanc, dos avec logo" width="1000" height="1500" loading="lazy"></div>
+                            <div class="merch-carousel-slide"><img src="assets/img/merch/tshirt-8.webp" alt="Tee-shirt Petit Tonnerre noir, dos avec logo" width="1000" height="1500" loading="lazy"></div>
+                        </div>
+                        <button type="button" class="merch-carousel-btn merch-carousel-prev" aria-label="Photo précédente">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><polyline points="15 18 9 12 15 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <button type="button" class="merch-carousel-btn merch-carousel-next" aria-label="Photo suivante">
+                            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" aria-hidden="true"><polyline points="9 18 15 12 9 6" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                        </button>
+                        <div class="merch-carousel-dots" aria-hidden="true"></div>
+                    </div>
                     <span class="boutique-hero-badge">Édition limitée</span>
                 </div>
             </div>
@@ -149,6 +165,6 @@
         </footer>
     </div>
 
-    <script src="js/script.js?v=7"></script>
+    <script src="js/script.js?v=8"></script>
 </body>
 </html>
