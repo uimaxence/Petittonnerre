@@ -2829,4 +2829,319 @@ a.btn.hero-button {
         border-radius: 0;
     }
 }
+
+/* #region Boutique HelloAsso */
+
+/* Padding latéral de la section (le sélecteur #galerie ne s'applique pas ici) */
+.boutique-page {
+    padding-left: 24px;
+    padding-right: 24px;
+    padding-bottom: 90px;
+}
+
+/* ---- Hero ---- */
+.boutique-hero {
+    display: grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    align-items: center;
+    gap: 56px;
+    max-width: 1200px;
+    margin: 0 auto 80px;
+}
+
+/* Évite le débordement grid + image (min-width: auto sur les items) */
+.boutique-hero-text,
+.boutique-hero-media,
+.boutique-perk {
+    min-width: 0;
+}
+
+.boutique-hero-title {
+    font-family: 'TBJ Fluke', sans-serif;
+    font-weight: bold;
+    font-size: 76px;
+    line-height: 0.98;
+    letter-spacing: 1px;
+    color: #fff;
+    margin: 8px 0 20px;
+}
+
+.boutique-hero-sub {
+    font-family: 'Poppins', sans-serif;
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(255, 255, 255, 0.8);
+    max-width: 500px;
+    margin-bottom: 30px;
+}
+
+.boutique-hero-cta {
+    display: inline-block;
+}
+
+/* Média hero : bords cassés (clip-path sur l'img) + ombre nette sur le wrapper,
+   même technique que .agenda-affiche / .button-wrapper */
+.boutique-hero-media {
+    position: relative;
+    aspect-ratio: 4 / 5;
+    transform: rotate(-0.7deg);
+    -webkit-filter: drop-shadow(8px 8px 0 rgba(1, 255, 255, 0.85))
+            drop-shadow(0 12px 26px rgba(0, 0, 0, 0.4));
+    filter: drop-shadow(8px 8px 0 rgba(1, 255, 255, 0.85))
+            drop-shadow(0 12px 26px rgba(0, 0, 0, 0.4));
+}
+
+.boutique-hero-media img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+    display: block;
+    -webkit-clip-path: polygon(1% 0.7%, 99.3% 0, 100% 99.2%, 0 100%);
+    clip-path: polygon(1% 0.7%, 99.3% 0, 100% 99.2%, 0 100%);
+}
+
+.boutique-hero-badge {
+    position: absolute;
+    top: 16px;
+    left: 16px;
+    z-index: 2;
+    font-family: 'Poppins', sans-serif;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-dark-blue);
+    background: var(--color-blue);
+    padding: 8px 15px;
+    -webkit-clip-path: polygon(3% 6%, 97% 0, 100% 88%, 2% 100%);
+    clip-path: polygon(3% 6%, 97% 0, 100% 88%, 2% 100%);
+}
+
+/* ---- Arguments ---- */
+.boutique-perks {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px;
+    max-width: 1100px;
+    margin: 0 auto 90px;
+}
+
+/* Cartes : ombre nette décalée sur le wrapper, découpe cassée sur l'inner */
+.boutique-perk {
+    transform: rotate(-0.5deg);
+    -webkit-filter: drop-shadow(6px 6px 0 rgba(1, 255, 255, 0.7));
+    filter: drop-shadow(6px 6px 0 rgba(1, 255, 255, 0.7));
+    transition: transform 0.25s ease, filter 0.25s ease;
+}
+
+.boutique-perk:nth-child(even) {
+    transform: rotate(0.5deg);
+}
+
+.boutique-perk-inner {
+    /* fond opaque : sinon l'ombre nette du wrapper transparaît (texte dédoublé) */
+    background: #1f173c;
+    padding: 30px 26px;
+    height: 100%;
+    text-align: left;
+    -webkit-clip-path: polygon(0.8% 1.5%, 99% 0, 100% 98.5%, 0 100%);
+    clip-path: polygon(0.8% 1.5%, 99% 0, 100% 98.5%, 0 100%);
+}
+
+.boutique-perk:hover {
+    transform: translateY(-4px) rotate(-0.5deg);
+    -webkit-filter: drop-shadow(7px 8px 0 rgba(253, 126, 219, 0.8));
+    filter: drop-shadow(7px 8px 0 rgba(253, 126, 219, 0.8));
+}
+
+.boutique-perk:nth-child(even):hover {
+    transform: translateY(-4px) rotate(0.5deg);
+}
+
+.boutique-perk-icon {
+    font-size: 30px;
+    display: block;
+    margin-bottom: 14px;
+}
+
+.boutique-perk-title {
+    font-family: 'Poppins', sans-serif;
+    font-size: 19px;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 10px;
+}
+
+.boutique-perk-text {
+    font-family: 'Poppins', sans-serif;
+    font-size: 15px;
+    line-height: 1.55;
+    color: rgba(255, 255, 255, 0.68);
+}
+
+/* ---- Shop ---- */
+.boutique-shop {
+    scroll-margin-top: 30px;
+    margin-bottom: 90px;
+}
+
+.boutique-shop .galerie-header {
+    margin-bottom: 40px;
+}
+
+.boutique-widget {
+    position: relative;
+    max-width: 1100px;
+    margin: 0 auto;
+    -webkit-filter: drop-shadow(8px 8px 0 rgba(1, 255, 255, 0.7))
+            drop-shadow(0 16px 40px rgba(0, 0, 0, 0.3));
+    filter: drop-shadow(8px 8px 0 rgba(1, 255, 255, 0.7))
+            drop-shadow(0 16px 40px rgba(0, 0, 0, 0.3));
+}
+
+.boutique-iframe {
+    width: 100%;
+    /* hauteur de secours au chargement ; l'auto-resize HelloAsso l'ajuste ensuite */
+    min-height: 750px;
+    border: none;
+    background: #fff;
+    display: block;
+    -webkit-clip-path: polygon(0.4% 0.4%, 99.6% 0, 100% 99.6%, 0 100%);
+    clip-path: polygon(0.4% 0.4%, 99.6% 0, 100% 99.6%, 0 100%);
+}
+
+.boutique-fallback {
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    color: rgba(255, 255, 255, 0.6);
+    text-align: center;
+    margin-top: 20px;
+}
+
+.boutique-fallback a {
+    color: var(--color-blue);
+    text-decoration: underline;
+}
+
+.boutique-fallback a:hover {
+    color: var(--color-rose);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+    .boutique-hero {
+        grid-template-columns: 1fr;
+        gap: 34px;
+        margin-bottom: 60px;
+    }
+    .boutique-hero-media {
+        order: -1;
+        aspect-ratio: 16 / 10;
+        max-height: 360px;
+    }
+    .boutique-hero-title { font-size: 58px; }
+    .boutique-perks {
+        grid-template-columns: 1fr;
+        gap: 14px;
+        margin-bottom: 64px;
+    }
+}
+
+@media (max-width: 768px) {
+    .boutique-iframe {
+        min-height: 850px;
+    }
+    .boutique-hero-title { font-size: 48px; }
+}
+/* #endregion */
+
+/* #region Bandeau merch (home) */
+.merch-banner {
+    display: block;
+    width: 100%;
+    background: linear-gradient(90deg, var(--color-dark-blue) 0%, #3a1fa8 50%, var(--color-dark-blue) 100%);
+    background-size: 200% 100%;
+    text-decoration: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 200;
+    border-bottom: 1px solid rgba(1, 255, 255, 0.35);
+    animation: merch-banner-shift 8s linear infinite;
+}
+
+@keyframes merch-banner-shift {
+    0% { background-position: 0% 50%; }
+    100% { background-position: 200% 50%; }
+}
+
+.merch-banner-inner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 11px 20px;
+    font-family: 'Poppins', sans-serif;
+    font-size: 14.5px;
+    color: #fff;
+}
+
+.merch-banner-bolt {
+    font-size: 16px;
+}
+
+.merch-banner-text {
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.merch-banner-text strong {
+    color: #fff;
+    font-weight: 600;
+}
+
+.merch-banner-cta {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    flex-shrink: 0;
+    font-weight: 600;
+    color: var(--color-blue);
+    white-space: nowrap;
+    transition: gap 0.2s ease;
+}
+
+.merch-banner:hover .merch-banner-cta {
+    gap: 10px;
+}
+
+@media (max-width: 640px) {
+    .merch-banner-inner {
+        flex-direction: column;
+        gap: 9px;
+        padding: 12px 16px;
+        font-size: 13px;
+        text-align: center;
+    }
+    .merch-banner-text {
+        line-height: 1.45;
+        color: #fff;
+    }
+    .merch-banner-text strong {
+        display: inline;
+        color: var(--color-blue);
+    }
+    /* CTA en petit bouton clipé : cible tactile claire + bords cassés DA */
+    .merch-banner-cta {
+        color: var(--color-dark-blue);
+        background: var(--color-blue);
+        padding: 7px 18px;
+        -webkit-clip-path: polygon(3% 10%, 97% 0, 99% 84%, 2% 100%);
+        clip-path: polygon(3% 10%, 97% 0, 99% 84%, 2% 100%);
+    }
+    .merch-banner:hover .merch-banner-cta { gap: 5px; }
+}
+/* #endregion */
 /* #endregion */

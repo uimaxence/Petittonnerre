@@ -1,3 +1,15 @@
+// Bandeau merch fixe : réserve sa hauteur en haut de page (responsive-safe)
+document.addEventListener('DOMContentLoaded', function() {
+    const banner = document.querySelector('.merch-banner');
+    if (!banner) return;
+    const reserve = function() {
+        document.body.style.paddingTop = banner.offsetHeight + 'px';
+    };
+    reserve();
+    window.addEventListener('resize', reserve);
+    window.addEventListener('load', reserve);
+});
+
 // Vidéo featured sur galerie.html : plein écran + son au clic
 document.addEventListener('DOMContentLoaded', function() {
     const featured = document.getElementById('featured-video');
