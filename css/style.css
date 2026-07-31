@@ -2338,10 +2338,31 @@ a.btn.hero-button {
     color: #fff;
 }
 
+.retour-rows,
 .retour-photos,
 .retour-cta {
     position: relative;
     z-index: 2;
+}
+
+/* Deux lignes de photos (une par événement), chacune avec son label */
+.retour-rows {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    width: 100%;
+    max-width: 1180px;
+}
+
+.retour-row-label {
+    font-family: 'Poppins', sans-serif;
+    font-size: 13px;
+    font-weight: 600;
+    color: rgba(255, 255, 255, 0.85);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    margin-bottom: 12px;
+    text-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
 }
 
 .retour-eyebrow {
@@ -2460,6 +2481,11 @@ a.btn.hero-button {
     }
     .retour-title { font-size: 52px; }
     .retour-subtitle { font-size: 15px; }
+    .retour-rows { gap: 22px; }
+    .retour-row-label {
+        font-size: 12px;
+        margin-bottom: 8px;
+    }
     .retour-photos {
         grid-template-columns: repeat(3, 1fr);
         gap: 10px;
@@ -2528,6 +2554,35 @@ a.btn.hero-button {
 .galerie-header {
     text-align: center;
     margin-bottom: 72px;
+}
+
+/* Bloc par événement sur la page galerie (Terra Botanica, puis L'Arche) */
+.galerie-event {
+    scroll-margin-top: 90px;
+}
+
+.galerie-event + .galerie-event {
+    margin-top: 110px;
+    padding-top: 70px;
+    border-top: 1px solid rgba(255, 255, 255, 0.12);
+}
+
+.galerie-event-header {
+    text-align: center;
+    margin-bottom: 40px;
+}
+
+.galerie-event-header .galerie-eyebrow {
+    margin-bottom: 10px;
+}
+
+.galerie-event-title {
+    font-family: 'TBJ Fluke', sans-serif;
+    font-weight: bold;
+    font-size: 42px;
+    color: #fff;
+    line-height: 1;
+    letter-spacing: 1px;
 }
 
 .galerie-eyebrow {
@@ -2742,6 +2797,12 @@ a.btn.hero-button {
     .galerie-title { font-size: 44px; }
     .galerie-header { margin-bottom: 36px; }
     .galerie-deco { display: none; }
+    .galerie-event + .galerie-event {
+        margin-top: 64px;
+        padding-top: 44px;
+    }
+    .galerie-event-header { margin-bottom: 26px; }
+    .galerie-event-title { font-size: 32px; }
 }
 
 /* Lightbox */

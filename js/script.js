@@ -130,12 +130,32 @@ const GALERIE_PHOTOS = [
     ['_A7R3888.jpg', 1.500], ['_A7R3891.jpg', 0.666], ['_A7R3893.jpg', 0.667],
     ['_A7R3897.jpg', 0.667]
 ];
-const GALERIE_DIR = 'assets/img/galerie/';
+// Galerie : C'est la Récré du 24 juillet 2026 à Terra Botanica
+const TERRA_PHOTOS = [
+    ['DSC04353.jpg', 0.667], ['DSC04363.jpg', 0.667], ['DSC04379.jpg', 0.667],
+    ['DSC04411.jpg', 0.667], ['DSC04443.jpg', 1.500], ['DSC04450.jpg', 0.667],
+    ['DSC04462.jpg', 0.667], ['DSC04489.jpg', 0.667], ['DSC04512.jpg', 0.667],
+    ['DSC04523.jpg', 0.667], ['DSC04530.jpg', 0.667], ['DSC04589.jpg', 0.667]
+];
+
+// Un set par événement : dossier, photos et libellé pour les alt
+const GALERIE_SETS = {
+    arche: {
+        dir: 'assets/img/galerie/',
+        photos: GALERIE_PHOTOS,
+        label: 'Premier Tonnerre, 28 mai 2026'
+    },
+    terra: {
+        dir: 'assets/img/galerie_terra/',
+        photos: TERRA_PHOTOS,
+        label: "C'est la Récré à Terra Botanica, 24 juillet 2026"
+    }
+};
 
 document.addEventListener('DOMContentLoaded', function() {
-    const grid = document.getElementById('galerie-grid');
+    const grids = document.querySelectorAll('.galerie-grid[data-galerie]');
     const lightbox = document.getElementById('galerie-lightbox');
-    if (!grid || !lightbox) return;
+    if (!grids.length || !lightbox) return;
 
     const imgEl = document.getElementById('galerie-lightbox-img');
     const counter = document.getElementById('galerie-lightbox-counter');
@@ -143,26 +163,13 @@ document.addEventListener('DOMContentLoaded', function() {
     const btnPrev = lightbox.querySelector('.galerie-lightbox-prev');
     const btnNext = lightbox.querySelector('.galerie-lightbox-next');
 
+    // Set actif dans la lightbox (la navigation reste dans l'événement ouvert)
+    let activeSet = null;
     let currentIndex = 0;
 
     // Compat : extrait juste le filename quand on n'a pas besoin du ratio
     const photoFile = (p) => Array.isArray(p) ? p[0] : p;
     const photoRatio = (p) => Array.isArray(p) ? p[1] : 1.5;
-
-    // Sélection des photos affichées :
-    // - data-photo-count="N" sur #galerie-grid → N photos réparties uniformément (teaser home)
-    // - Pas d'attribut → toutes les photos (page galerie dédiée)
-    const limitAttr = parseInt(grid.dataset.photoCount, 10);
-    let photos;
-    if (limitAttr > 0 && limitAttr < GALERIE_PHOTOS.length) {
-        const step = GALERIE_PHOTOS.length / limitAttr;
-        photos = [];
-        for (let i = 0; i < limitAttr; i++) {
-            photos.push(GALERIE_PHOTOS[Math.floor(i * step)]);
-        }
-    } else {
-        photos = GALERIE_PHOTOS;
-    }
 
     // Détermine le nombre de colonnes selon viewport
     function getColCount() {
@@ -173,9 +180,41 @@ document.addEventListener('DOMContentLoaded', function() {
         return 4;
     }
 
+    const galleries = [];
+    grids.forEach(function(grid) {
+        const set = GALERIE_SETS[grid.dataset.galerie];
+        if (!set) return;
+
+        // Sélection des photos affichées :
+        // - data-photo-count="N" sur la grille → N photos réparties uniformément (teaser)
+        // - Pas d'attribut → toutes les photos (page galerie dédiée)
+        const limitAttr = parseInt(grid.dataset.photoCount, 10);
+        let photos;
+        if (limitAttr > 0 && limitAttr < set.photos.length) {
+            const step = set.photos.length / limitAttr;
+            photos = [];
+            for (let i = 0; i < limitAttr; i++) {
+                photos.push(set.photos[Math.floor(i * step)]);
+            }
+        } else {
+            photos = set.photos;
+        }
+
+        const gallery = { grid: grid, dir: set.dir, label: set.label, photos: photos };
+        galleries.push(gallery);
+
+        grid.addEventListener('click', function(e) {
+            const item = e.target.closest('.galerie-item');
+            if (!item) return;
+            openLightbox(gallery, parseInt(item.dataset.index, 10));
+        });
+    });
+
     // Rendu masonry : sort par ratio desc, puis place chaque photo dans la colonne
     // la plus courte. Donne un équilibrage quasi-parfait des hauteurs de colonnes.
-    function renderGrid() {
+    function renderGrid(gallery) {
+        const grid = gallery.grid;
+        const photos = gallery.photos;
         grid.innerHTML = '';
         const cols = getColCount();
         const columns = [];
@@ -203,8 +242,8 @@ document.addEventListener('DOMContentLoaded', function() {
             btn.setAttribute('aria-label', `Photo ${origIdx + 1} sur ${photos.length}`);
             btn.dataset.index = origIdx;
             const img = document.createElement('img');
-            img.src = GALERIE_DIR + file;
-            img.alt = `Premier Tonnerre — 28 mai 2026 — photo ${origIdx + 1}`;
+            img.src = gallery.dir + file;
+            img.alt = `${gallery.label}, photo ${origIdx + 1}`;
             img.loading = 'lazy';
             img.decoding = 'async';
             btn.appendChild(img);
@@ -212,7 +251,7 @@ document.addEventListener('DOMContentLoaded', function() {
             heights[shortest] += ratio;
         });
     }
-    renderGrid();
+    galleries.forEach(renderGrid);
 
     // Re-rendre si on change de breakpoint (rotation tablette / resize fenêtre)
     let lastCols = getColCount();
@@ -220,11 +259,12 @@ document.addEventListener('DOMContentLoaded', function() {
         const cols = getColCount();
         if (cols !== lastCols) {
             lastCols = cols;
-            renderGrid();
+            galleries.forEach(renderGrid);
         }
     });
 
-    function openLightbox(index) {
+    function openLightbox(gallery, index) {
+        activeSet = gallery;
         currentIndex = index;
         updateLightbox();
         lightbox.hidden = false;
@@ -240,27 +280,21 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function updateLightbox() {
-        const file = photoFile(photos[currentIndex]);
-        imgEl.src = GALERIE_DIR + file;
-        imgEl.alt = `Premier Tonnerre — 28 mai 2026 — photo ${currentIndex + 1}`;
-        counter.textContent = `${currentIndex + 1} / ${photos.length}`;
+        const file = photoFile(activeSet.photos[currentIndex]);
+        imgEl.src = activeSet.dir + file;
+        imgEl.alt = `${activeSet.label}, photo ${currentIndex + 1}`;
+        counter.textContent = `${currentIndex + 1} / ${activeSet.photos.length}`;
     }
 
     function showPrev() {
-        currentIndex = (currentIndex - 1 + photos.length) % photos.length;
+        currentIndex = (currentIndex - 1 + activeSet.photos.length) % activeSet.photos.length;
         updateLightbox();
     }
 
     function showNext() {
-        currentIndex = (currentIndex + 1) % photos.length;
+        currentIndex = (currentIndex + 1) % activeSet.photos.length;
         updateLightbox();
     }
-
-    grid.addEventListener('click', function(e) {
-        const item = e.target.closest('.galerie-item');
-        if (!item) return;
-        openLightbox(parseInt(item.dataset.index, 10));
-    });
 
     btnClose.addEventListener('click', closeLightbox);
     btnPrev.addEventListener('click', showPrev);

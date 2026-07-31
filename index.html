@@ -35,7 +35,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=36">
+    <link rel="stylesheet" href="css/style.css?v=37">
 </head>
 <body>
     <!-- Bandeau merch : redirige vers la boutique -->
@@ -64,7 +64,7 @@
                 <img class="hero-logo" src="assets/img/logo-pt-production.webp" alt="Logo Petit Tonnerre Production">
                 <p class="hero-tagline">Association culturelle angevine <span class="hero-tagline-sep">|</span> Rendez-vous musicaux et familiaux</p>
             </div>
-            <div class="button-wrapper" data-scroll-to="#agenda">
+            <div class="button-wrapper" data-scroll-to="#retour-images">
                 <button type="button" class="btn hero-button">Découvrir</button>
             </div>
         </div>
@@ -139,7 +139,13 @@
     </section>
     -->
 
-    <!-- Section Agenda : prochain rendez-vous -->
+    <!--
+        Section Agenda : ARCHIVÉE après C'est la Récré du 24 juillet 2026 (Terra Botanica).
+        Aucun évènement à annoncer pour l'instant. Pour la réactiver au prochain évènement :
+        décommenter ce bloc, mettre à jour dates/programme/billetterie, et repointer
+        le bouton « Découvrir » du hero vers #agenda (data-scroll-to).
+        Styles CSS associés conservés dans css/style.css (#agenda).
+
     <section id="agenda">
         <div class="agenda-bg" aria-hidden="true">
             <img class="agenda-deco agenda-deco-1" src="assets/img/eclair.svg" alt="">
@@ -175,7 +181,7 @@
                 </a>
             </div>
 
-            <!-- Focus évènement : affiche + programme (24 juillet, Terra Botanica) -->
+            (Focus évènement : affiche + programme, 24 juillet, Terra Botanica)
             <div class="agenda-focus">
                 <a class="agenda-affiche" href="https://my.weezevent.com/cest-la-recre-by-petit-tonnerre-2026" target="_blank" rel="noopener noreferrer" aria-label="Affiche de l'évènement — accéder à la billetterie gratuite">
                     <img src="assets/img/affiche-terra-24-07.webp" alt="Affiche C'est la récré by Petit Tonnerre à Terra Botanica — vendredi 24 juillet, 18h30 à 22h30, DJ set, animations, ateliers, artistes" loading="lazy">
@@ -245,6 +251,7 @@
             </div>
         </div>
     </section>
+    -->
 
     <!-- Section Retour en images : vidéo bg + teaser photos + CTA (28 mai 2026) -->
     <section id="retour-images">
@@ -253,26 +260,51 @@
         </video>
         <div class="retour-overlay" aria-hidden="true"></div>
         <div class="retour-content">
-            <p class="retour-eyebrow">Jeudi 28 mai 2026 <span class="retour-eyebrow-sep">|</span> L'Arche, Angers</p>
+            <p class="retour-eyebrow">Saison 2026 <span class="retour-eyebrow-sep">|</span> Angers</p>
             <h2 class="retour-title">Retour en images</h2>
-            <p class="retour-subtitle">Premier Tonnerre, quelques instants de cette soirée d'ouverture.</p>
+            <p class="retour-subtitle">Premier Tonnerre à L'Arche, C'est la Récré à Terra Botanica : quelques instants de nos deux premiers événements.</p>
         </div>
-        <div class="retour-photos">
-            <a class="retour-photo" href="galerie.html" aria-label="Voir toutes les photos">
-                <img src="assets/img/galerie/_A7R3751.jpg" alt="Premier Tonnerre — photo 1" loading="lazy">
-            </a>
-            <a class="retour-photo" href="galerie.html" aria-label="Voir toutes les photos">
-                <img src="assets/img/galerie/_A7R3783.jpg" alt="Premier Tonnerre — photo 2" loading="lazy">
-            </a>
-            <a class="retour-photo" href="galerie.html" aria-label="Voir toutes les photos">
-                <img src="assets/img/galerie/_A7R3820.jpg" alt="Premier Tonnerre — photo 3" loading="lazy">
-            </a>
-            <a class="retour-photo" href="galerie.html" aria-label="Voir toutes les photos">
-                <img src="assets/img/galerie/_A7R3863.jpg" alt="Premier Tonnerre — photo 4" loading="lazy">
-            </a>
-            <a class="retour-photo" href="galerie.html" aria-label="Voir toutes les photos">
-                <img src="assets/img/galerie/_A7R3886.jpg" alt="Premier Tonnerre — photo 5" loading="lazy">
-            </a>
+        <div class="retour-rows">
+            <div class="retour-row">
+                <p class="retour-row-label">Vendredi 24 juillet 2026 <span class="retour-eyebrow-sep">|</span> Terra Botanica</p>
+                <div class="retour-photos">
+                    <a class="retour-photo" href="galerie.html#terra" aria-label="Voir toutes les photos de Terra Botanica">
+                        <img src="assets/img/galerie_terra/DSC04523.jpg" alt="C'est la Récré à Terra Botanica, photo 1" loading="lazy">
+                    </a>
+                    <a class="retour-photo" href="galerie.html#terra" aria-label="Voir toutes les photos de Terra Botanica">
+                        <img src="assets/img/galerie_terra/DSC04411.jpg" alt="C'est la Récré à Terra Botanica, photo 2" loading="lazy">
+                    </a>
+                    <a class="retour-photo" href="galerie.html#terra" aria-label="Voir toutes les photos de Terra Botanica">
+                        <img src="assets/img/galerie_terra/DSC04530.jpg" alt="C'est la Récré à Terra Botanica, photo 3" loading="lazy">
+                    </a>
+                    <a class="retour-photo" href="galerie.html#terra" aria-label="Voir toutes les photos de Terra Botanica">
+                        <img src="assets/img/galerie_terra/DSC04512.jpg" alt="C'est la Récré à Terra Botanica, photo 4" loading="lazy">
+                    </a>
+                    <a class="retour-photo" href="galerie.html#terra" aria-label="Voir toutes les photos de Terra Botanica">
+                        <img src="assets/img/galerie_terra/DSC04589.jpg" alt="C'est la Récré à Terra Botanica, photo 5" loading="lazy">
+                    </a>
+                </div>
+            </div>
+            <div class="retour-row">
+                <p class="retour-row-label">Jeudi 28 mai 2026 <span class="retour-eyebrow-sep">|</span> L'Arche</p>
+                <div class="retour-photos">
+                    <a class="retour-photo" href="galerie.html#premier-tonnerre" aria-label="Voir toutes les photos du Premier Tonnerre">
+                        <img src="assets/img/galerie/_A7R3751.jpg" alt="Premier Tonnerre, photo 1" loading="lazy">
+                    </a>
+                    <a class="retour-photo" href="galerie.html#premier-tonnerre" aria-label="Voir toutes les photos du Premier Tonnerre">
+                        <img src="assets/img/galerie/_A7R3783.jpg" alt="Premier Tonnerre, photo 2" loading="lazy">
+                    </a>
+                    <a class="retour-photo" href="galerie.html#premier-tonnerre" aria-label="Voir toutes les photos du Premier Tonnerre">
+                        <img src="assets/img/galerie/_A7R3820.jpg" alt="Premier Tonnerre, photo 3" loading="lazy">
+                    </a>
+                    <a class="retour-photo" href="galerie.html#premier-tonnerre" aria-label="Voir toutes les photos du Premier Tonnerre">
+                        <img src="assets/img/galerie/_A7R3863.jpg" alt="Premier Tonnerre, photo 4" loading="lazy">
+                    </a>
+                    <a class="retour-photo" href="galerie.html#premier-tonnerre" aria-label="Voir toutes les photos du Premier Tonnerre">
+                        <img src="assets/img/galerie/_A7R3886.jpg" alt="Premier Tonnerre, photo 5" loading="lazy">
+                    </a>
+                </div>
+            </div>
         </div>
         <a href="galerie.html" class="retour-cta">
             Voir toutes les photos
@@ -438,6 +470,6 @@
     </div>
 
     <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
-    <script src="js/script.js?v=8"></script>
+    <script src="js/script.js?v=9"></script>
 </body>
 </html>

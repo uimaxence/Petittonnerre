@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Galerie photos du Premier Tonnerre — 28 mai 2026 à L'Arche, Angers. Petit Tonnerre Production.">
-    <title>Galerie – Premier Tonnerre | Petit Tonnerre Production</title>
+    <meta name="description" content="Galerie photos des événements Petit Tonnerre Production : C'est la Récré à Terra Botanica (24 juillet 2026) et le Premier Tonnerre à L'Arche (28 mai 2026), Angers.">
+    <title>Galerie – Retour en images | Petit Tonnerre Production</title>
 
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="32x32" href="assets/img/favicon-32.png">
@@ -16,8 +16,8 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://petittonnerre.fr/galerie.html">
-    <meta property="og:title" content="Galerie – Premier Tonnerre | Petit Tonnerre Production">
-    <meta property="og:description" content="Retour en images du Premier Tonnerre — 28 mai 2026 à L'Arche, Angers.">
+    <meta property="og:title" content="Galerie – Retour en images | Petit Tonnerre Production">
+    <meta property="og:description" content="Retour en images : C'est la Récré à Terra Botanica et le Premier Tonnerre à L'Arche, Angers.">
     <meta property="og:image" content="https://petittonnerre.fr/assets/img/og-image.jpg">
     <meta property="og:image:type" content="image/jpeg">
     <meta property="og:image:width" content="1200">
@@ -27,14 +27,14 @@
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Galerie – Premier Tonnerre | Petit Tonnerre Production">
-    <meta name="twitter:description" content="Retour en images du Premier Tonnerre — 28 mai 2026 à L'Arche, Angers.">
+    <meta name="twitter:title" content="Galerie – Retour en images | Petit Tonnerre Production">
+    <meta name="twitter:description" content="Retour en images : C'est la Récré à Terra Botanica et le Premier Tonnerre à L'Arche, Angers.">
     <meta name="twitter:image" content="https://petittonnerre.fr/assets/img/og-image.jpg">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/style.css?v=36">
+    <link rel="stylesheet" href="css/style.css?v=37">
 </head>
 <body class="page-galerie">
     <!-- Header minimal : logo + retour accueil -->
@@ -59,23 +59,38 @@
         </div>
         <div class="galerie-content">
             <div class="galerie-header">
-                <p class="galerie-eyebrow">Jeudi 28 mai 2026 <span class="galerie-eyebrow-sep">|</span> L'Arche, Angers</p>
+                <p class="galerie-eyebrow">Saison 2026 <span class="galerie-eyebrow-sep">|</span> Angers</p>
                 <h1 class="galerie-title">Retour en images</h1>
-                <p class="galerie-subtitle">Premier Tonnerre : 43 photos signées de notre photographe.</p>
+                <p class="galerie-subtitle">Deux événements, deux ambiances : C'est la Récré à Terra Botanica et le Premier Tonnerre à L'Arche.</p>
             </div>
-            <div class="galerie-video-featured">
-                <video id="featured-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/teaser-poster.jpg">
-                    <source src="assets/video/teaser.mp4" type="video/mp4">
-                </video>
-                <span class="galerie-video-badge">After movie</span>
-                <button type="button" class="galerie-video-fs" aria-label="Lecture plein écran avec son">
-                    <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
-                        <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
-                    </svg>
-                    <span>Plein écran</span>
-                </button>
+
+            <div class="galerie-event" id="terra">
+                <div class="galerie-event-header">
+                    <p class="galerie-eyebrow">Vendredi 24 juillet 2026 <span class="galerie-eyebrow-sep">|</span> Terra Botanica, Angers</p>
+                    <h2 class="galerie-event-title">C'est la Récré</h2>
+                </div>
+                <div class="galerie-grid" data-galerie="terra"></div>
             </div>
-            <div class="galerie-grid" id="galerie-grid"></div>
+
+            <div class="galerie-event" id="premier-tonnerre">
+                <div class="galerie-event-header">
+                    <p class="galerie-eyebrow">Jeudi 28 mai 2026 <span class="galerie-eyebrow-sep">|</span> L'Arche, Angers</p>
+                    <h2 class="galerie-event-title">Premier Tonnerre</h2>
+                </div>
+                <div class="galerie-video-featured">
+                    <video id="featured-video" autoplay muted loop playsinline preload="metadata" poster="assets/video/teaser-poster.jpg">
+                        <source src="assets/video/teaser.mp4" type="video/mp4">
+                    </video>
+                    <span class="galerie-video-badge">After movie</span>
+                    <button type="button" class="galerie-video-fs" aria-label="Lecture plein écran avec son">
+                        <svg width="20" height="20" viewBox="0 0 24 24" fill="none" aria-hidden="true">
+                            <path d="M4 9V4h5M20 9V4h-5M4 15v5h5M20 15v5h-5" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                        </svg>
+                        <span>Plein écran</span>
+                    </button>
+                </div>
+                <div class="galerie-grid" data-galerie="arche"></div>
+            </div>
         </div>
     </section>
 
@@ -149,6 +164,6 @@
         </div>
     </div>
 
-    <script src="js/script.js?v=8"></script>
+    <script src="js/script.js?v=9"></script>
 </body>
 </html>
