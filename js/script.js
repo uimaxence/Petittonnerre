@@ -64,51 +64,53 @@ document.addEventListener('DOMContentLoaded', function() {
     });
 });
 
-// Vidéo featured sur galerie.html : plein écran + son au clic
+// Vidéos featured sur galerie.html : plein écran + son au clic
 document.addEventListener('DOMContentLoaded', function() {
-    const featured = document.getElementById('featured-video');
-    const fsBtn = document.querySelector('.galerie-video-fs');
-    if (!featured) return;
-
     function inFullscreen() {
         return !!(document.fullscreenElement || document.webkitFullscreenElement);
     }
 
-    function enterFullscreen() {
-        const fn = featured.requestFullscreen
-            || featured.webkitRequestFullscreen
-            || featured.webkitEnterFullscreen;
-        if (!fn) return;
-        try {
-            const result = fn.call(featured);
-            if (result && typeof result.catch === 'function') result.catch(function() {});
-        } catch (e) { /* iOS Safari */ }
-        featured.muted = false;
-        featured.controls = true;
-        featured.currentTime = 0;
-        featured.play().catch(function() {});
-    }
+    document.querySelectorAll('.galerie-video-featured').forEach(function(wrapper) {
+        const featured = wrapper.querySelector('video');
+        const fsBtn = wrapper.querySelector('.galerie-video-fs');
+        if (!featured) return;
 
-    function exitFullscreenCleanup() {
-        featured.muted = true;
-        featured.controls = false;
-    }
+        function enterFullscreen() {
+            const fn = featured.requestFullscreen
+                || featured.webkitRequestFullscreen
+                || featured.webkitEnterFullscreen;
+            if (!fn) return;
+            try {
+                const result = fn.call(featured);
+                if (result && typeof result.catch === 'function') result.catch(function() {});
+            } catch (e) { /* iOS Safari */ }
+            featured.muted = false;
+            featured.controls = true;
+            featured.currentTime = 0;
+            featured.play().catch(function() {});
+        }
 
-    featured.addEventListener('click', function(e) {
-        if (inFullscreen()) return;
-        e.preventDefault();
-        enterFullscreen();
-    });
-    if (fsBtn) fsBtn.addEventListener('click', enterFullscreen);
+        function exitFullscreenCleanup() {
+            featured.muted = true;
+            featured.controls = false;
+        }
 
-    document.addEventListener('fullscreenchange', function() {
-        if (!inFullscreen()) exitFullscreenCleanup();
+        featured.addEventListener('click', function(e) {
+            if (inFullscreen()) return;
+            e.preventDefault();
+            enterFullscreen();
+        });
+        if (fsBtn) fsBtn.addEventListener('click', enterFullscreen);
+
+        document.addEventListener('fullscreenchange', function() {
+            if (!inFullscreen()) exitFullscreenCleanup();
+        });
+        document.addEventListener('webkitfullscreenchange', function() {
+            if (!inFullscreen()) exitFullscreenCleanup();
+        });
+        // iOS : la vidéo gère son propre fullscreen, on récupère via webkitendfullscreen
+        featured.addEventListener('webkitendfullscreen', exitFullscreenCleanup);
     });
-    document.addEventListener('webkitfullscreenchange', function() {
-        if (!inFullscreen()) exitFullscreenCleanup();
-    });
-    // iOS : la vidéo gère son propre fullscreen, on récupère via webkitendfullscreen
-    featured.addEventListener('webkitendfullscreen', exitFullscreenCleanup);
 });
 
 // Galerie : Premier Tonnerre du 28 mai 2026

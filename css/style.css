@@ -2694,6 +2694,10 @@ a.btn.hero-button {
     isolation: isolate;
 }
 
+.galerie-video-featured--below {
+    margin: 36px auto 0;
+}
+
 .galerie-video-featured video {
     display: block;
     width: 100%;
