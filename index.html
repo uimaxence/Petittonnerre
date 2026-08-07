@@ -64,7 +64,7 @@
                 <img class="hero-logo" src="assets/img/logo-pt-production.webp" alt="Logo Petit Tonnerre Production">
                 <p class="hero-tagline">Association culturelle angevine <span class="hero-tagline-sep">|</span> Rendez-vous musicaux et familiaux</p>
             </div>
-            <div class="button-wrapper" data-scroll-to="#retour-images">
+            <div class="button-wrapper" data-scroll-to="#agenda">
                 <button type="button" class="btn hero-button">Découvrir</button>
             </div>
         </div>
@@ -140,12 +140,11 @@
     -->
 
     <!--
-        Section Agenda : ARCHIVÉE après C'est la Récré du 24 juillet 2026 (Terra Botanica).
-        Aucun évènement à annoncer pour l'instant. Pour la réactiver au prochain évènement :
-        décommenter ce bloc, mettre à jour dates/programme/billetterie, et repointer
-        le bouton « Découvrir » du hero vers #agenda (data-scroll-to).
-        Styles CSS associés conservés dans css/style.css (#agenda).
-
+        Section Agenda : RÉACTIVÉE pour Vital'été (dimanche 23 août 2026, lac de Maine).
+        Pas encore de billetterie ni de programme : carte simple sans lien.
+        Quand les infos arrivent : transformer la carte en lien (voir C'est la Récré
+        dans l'historique git : bloc agenda-focus affiche + programme + billetterie).
+    -->
     <section id="agenda">
         <div class="agenda-bg" aria-hidden="true">
             <img class="agenda-deco agenda-deco-1" src="assets/img/eclair.svg" alt="">
@@ -163,25 +162,22 @@
                 <p class="agenda-subtitle">Retrouvez Petit Tonnerre lors du prochain évènement angevin.</p>
             </div>
             <div class="agenda-list">
-                <a class="agenda-event" href="https://my.weezevent.com/cest-la-recre-by-petit-tonnerre-2026" target="_blank" rel="noopener noreferrer">
+                <div class="agenda-event">
                     <div class="agenda-event-date">
-                        <span class="agenda-event-dow">VENDREDI</span>
-                        <span class="agenda-event-day">24</span>
-                        <span class="agenda-event-month">JUILLET</span>
+                        <span class="agenda-event-dow">DIMANCHE</span>
+                        <span class="agenda-event-day">23</span>
+                        <span class="agenda-event-month">AOÛT</span>
                     </div>
                     <div class="agenda-event-body">
-                        <h3 class="agenda-event-title">C'est la récré ! By Petit Tonnerre</h3>
-                        <p class="agenda-event-slogan">« Petits et grands, créez, jouez, partagez ! »</p>
-                        <p class="agenda-event-venue">Terra Botanica · 18h30 – 22h30</p>
-                        <span class="agenda-event-link" aria-hidden="true">
-                            En savoir plus
-                            <svg width="14" height="14" viewBox="0 0 24 24" fill="none"><path d="M7 17L17 7M17 7H9M17 7v8" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></svg>
-                        </span>
+                        <h3 class="agenda-event-title">Vital'été</h3>
+                        <p class="agenda-event-venue">Base de loisirs du lac de Maine · À partir de 17h</p>
+                        <p class="agenda-event-desc">Plus d'infos prochainement</p>
                     </div>
-                </a>
+                </div>
             </div>
 
-            (Focus évènement : affiche + programme, 24 juillet, Terra Botanica)
+            <!-- Focus évènement (affiche + programme) : à réactiver quand les infos de Vital'été arrivent.
+                 Modèle complet (C'est la Récré, Terra Botanica) dans l'historique git.
             <div class="agenda-focus">
                 <a class="agenda-affiche" href="https://my.weezevent.com/cest-la-recre-by-petit-tonnerre-2026" target="_blank" rel="noopener noreferrer" aria-label="Affiche de l'évènement — accéder à la billetterie gratuite">
                     <img src="assets/img/affiche-terra-24-07.webp" alt="Affiche C'est la récré by Petit Tonnerre à Terra Botanica — vendredi 24 juillet, 18h30 à 22h30, DJ set, animations, ateliers, artistes" loading="lazy">
@@ -249,9 +245,9 @@
                     </div>
                 </div>
             </div>
+            -->
         </div>
     </section>
-    -->
 
     <!-- Section Retour en images : vidéo bg + teaser photos + CTA (28 mai 2026) -->
     <section id="retour-images">
