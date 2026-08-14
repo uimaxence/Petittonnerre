@@ -2164,6 +2164,12 @@ a.btn.hero-button {
     padding: 16px 44px;
 }
 
+/* Variante solo : affiche seule, centrée, sans panneau programme */
+.agenda-focus-solo {
+    grid-template-columns: minmax(0, 440px);
+    justify-content: center;
+}
+
 @media (max-width: 900px) {
     .agenda-focus {
         grid-template-columns: 1fr;
