@@ -2164,10 +2164,15 @@ a.btn.hero-button {
     padding: 16px 44px;
 }
 
-/* Variante solo : affiche seule, centrée, sans panneau programme */
-.agenda-focus-solo {
-    grid-template-columns: minmax(0, 440px);
-    justify-content: center;
+/* Variante affiche + carte agenda : affiche à gauche, carte centrée verticalement à droite */
+.agenda-focus-card {
+    grid-template-columns: minmax(0, 420px) minmax(0, 1fr);
+    align-items: center;
+    margin-top: 0;
+}
+
+.agenda-focus-card .agenda-list {
+    min-width: 0;
 }
 
 @media (max-width: 900px) {
@@ -2176,6 +2181,10 @@ a.btn.hero-button {
         max-width: 520px;
         margin-left: auto;
         margin-right: auto;
+    }
+    /* Sur mobile : carte agenda d'abord (info rapide), affiche en dessous */
+    .agenda-focus-card .agenda-affiche {
+        order: 1;
     }
 }
 
